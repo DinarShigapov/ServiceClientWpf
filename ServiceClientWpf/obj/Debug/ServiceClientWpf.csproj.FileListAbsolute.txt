@@ -50,3 +50,5 @@ C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\ServiceC
 C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\ServiceClientWpf.csproj.CopyComplete
 C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\ServiceClientWpf.exe
 C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\ServiceClientWpf.pdb
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\bin\Debug\QuickConverter.dll
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

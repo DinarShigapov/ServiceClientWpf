@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ServiceClientWpf.Model;
+using System.Data.Entity;
 
 namespace ServiceClientWpf.Pages
 {
@@ -28,10 +29,43 @@ namespace ServiceClientWpf.Pages
         {
             InitializeComponent();
             LVService.ItemsSource = App.DB.Service.ToList();
+            CBFilter.SelectedIndex = 0;
+            CBSort.SelectedIndex = 0;
+            
         }
 
         private void Refresh() 
         {
+            IEnumerable<Service> services = App.DB.Service.ToList();
+            if (CBSort.SelectedIndex == 1)
+                services = services.OrderBy(x => x.CostDiscount);
+            else
+                services = services.OrderByDescending(x => x.CostDiscount);
+
+            switch (CBFilter.SelectedIndex)
+            {
+                case 1:
+                    services = services.Where(x => x.Discount >= 0 && x.Discount < 0.05 && x.Discount == null).ToList();
+                    break;
+                case 2:
+                    services = services.Where(x => x.Discount >= 0.05 && x.Discount < 0.15).ToList();
+                    break;
+                case 3:
+                    services = services.Where(x => x.Discount >= 0.15 && x.Discount < 0.30).ToList();
+                    break;
+                case 4:
+                    services = services.Where(x => x.Discount >= 0.30 && x.Discount < 0.70).ToList();
+                    break;
+                case 5:
+                    services = services.Where(x => x.Discount >= 0.70 && x.Discount < 1).ToList();
+                    break;
+            }
+
+            if (TBSearch.Text.Length > 0)
+                services = services.Where(x => x.Title.ToLower().StartsWith(TBSearch.Text.ToLower())
+                || x.Description.ToLower().StartsWith(TBSearch.Text.ToLower()));
+
+            LVService.ItemsSource = services.ToList();
 
         }
 

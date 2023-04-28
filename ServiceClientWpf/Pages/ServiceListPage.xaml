@@ -4,8 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ServiceClientWpf.Pages"
+      xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"  
+      xmlns:qc="http://QuickConverter.CodePlex.com/"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="900"
+      d:DesignHeight="600" d:DesignWidth="800"
+      x:Name="SCPage"
       Title="ServiceListPage">
 
     <Grid x:Name="grid">
@@ -49,7 +52,7 @@
                               Width="{Binding ActualWidth, ElementName=TBSearch, Mode=OneWay}"
                               Height="{Binding ActualHeight, ElementName=TBSearch, Mode=OneWay}">
                         <ComboBoxItem Content="Все"
-                                      IsSelected="True"/>
+                                      />
                         <ComboBoxItem Content="По возрастанию"/>
                         <ComboBoxItem Content="По убыванию"/>
                     </ComboBox>
@@ -61,7 +64,7 @@
                               Width="{Binding ActualWidth, ElementName=TBSearch, Mode=OneWay}"
                               Height="{Binding ActualHeight, ElementName=TBSearch, Mode=OneWay}">
                         <ComboBoxItem Content="Все"
-                                      IsSelected="True"/>
+                                      />
                         <ComboBoxItem Content="от 0 до 5%"/>
                         <ComboBoxItem Content="от 5 до 15%"/>
                         <ComboBoxItem Content="от 15 до 30%"/>
@@ -74,14 +77,16 @@
         </Grid>
 
         <ListView x:Name="LVService"
-                  Grid.Row="1" 
-                  d:ItemsSource="{d:SampleData ItemCount=5}"
+                  Grid.Row="1"
+                  Width="{Binding ElementName=SCPage, Mode=OneWay}"
+                  d:ItemsSource="{d:SampleData ItemCount=4}"
                   ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border x:Name="border" Width="850"
+                    <Border x:Name="border"
                             BorderBrush="Black"
                             Height="165"
+                            Width="{qc:Binding '$P-40', P={Binding ElementName=LVService, Path=ActualWidth}}"
                             Margin="5"
                             BorderThickness="1"
                             Padding="2">
@@ -102,8 +107,7 @@
                             </Border>
 
                             <Grid Grid.Column="2" 
-                                  Width="664"
-                                  HorizontalAlignment="Center">
+                                  HorizontalAlignment="Left">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
