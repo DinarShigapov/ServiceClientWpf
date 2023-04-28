@@ -83,31 +83,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Client.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ClientService.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DocumentByService.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Gender.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Manufacturer.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Product.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ProductPhoto.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ProductSale.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ServiceDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -124,11 +124,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\ServiceList.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceList.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ServiceList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceList.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ServiceList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceList.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Model\ServicePhoto.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Tag.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceList.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\ServiceListPage.xaml.cs">
       <DependentUpon>ServiceListPage.xaml</DependentUpon>
@@ -157,6 +172,13 @@
     <None Include="Model\ServiceDB.edmx.diagram">
       <DependentUpon>ServiceDB.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="Model\ServiceList.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ServiceList.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\ServiceList.edmx.diagram">
+      <DependentUpon>ServiceList.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -182,6 +204,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ServiceDB.edmx</DependentUpon>
       <LastGenOutput>ServiceDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\ServiceList.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ServiceList.edmx</DependentUpon>
+      <LastGenOutput>ServiceList.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\ServiceList.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ServiceList.edmx</DependentUpon>
+      <LastGenOutput>ServiceList.cs</LastGenOutput>
     </Content>
     <Resource Include="Resources\Logo\school_logo.png" />
     <Resource Include="Resources\Icon\school_logo.ico" />

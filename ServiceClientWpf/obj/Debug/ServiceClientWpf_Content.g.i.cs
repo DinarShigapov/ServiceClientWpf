@@ -10,5 +10,7 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/servicedb.context.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/servicedb.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/servicelist.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/servicelist.tt")]
 
 
