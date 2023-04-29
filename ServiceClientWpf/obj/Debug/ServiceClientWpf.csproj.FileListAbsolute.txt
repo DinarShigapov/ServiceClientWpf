@@ -86,3 +86,10 @@ C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\o
 C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\AdminPanelWindow.baml
 C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\ClientServicePage.g.cs
 C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\ClientServicePage.baml
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\AdminPanelWindow.g.cs
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\AddEditServicePage.g.cs
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\ClientServicePage.g.cs
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\AdminPanelWindow.baml
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\AddEditServicePage.baml
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\ClientServicePage.baml
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs

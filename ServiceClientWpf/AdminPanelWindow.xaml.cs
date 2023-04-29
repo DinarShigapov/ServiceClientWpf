@@ -35,10 +35,6 @@ namespace ServiceClientWpf
                 window.MainFrame.Navigate(new ServiceListPage());
                 this.Close();
             }
-               
-
-
-
         }
     }
 }

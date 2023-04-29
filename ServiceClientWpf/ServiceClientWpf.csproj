@@ -82,6 +82,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\WidthConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -144,21 +145,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\ServiceList.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceList.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ServiceList.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceList.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ServiceList.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceList.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model\ServicePhoto.cs">
       <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
@@ -198,13 +184,6 @@
     <None Include="Model\ServiceDB.edmx.diagram">
       <DependentUpon>ServiceDB.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="Model\ServiceList.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ServiceList.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\ServiceList.edmx.diagram">
-      <DependentUpon>ServiceList.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -217,7 +196,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\ServiceDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -229,16 +207,8 @@
       <DependentUpon>ServiceDB.edmx</DependentUpon>
       <LastGenOutput>ServiceDB.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\ServiceList.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServiceList.edmx</DependentUpon>
-      <LastGenOutput>ServiceList.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\ServiceList.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServiceList.edmx</DependentUpon>
-      <LastGenOutput>ServiceList.cs</LastGenOutput>
-    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Logo\school_logo.png" />
     <Resource Include="Resources\Icon\school_logo.ico" />
   </ItemGroup>

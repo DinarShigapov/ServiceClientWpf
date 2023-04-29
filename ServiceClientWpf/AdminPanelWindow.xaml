@@ -16,6 +16,8 @@
                        HorizontalAlignment="Center"/>
             <TextBox Width="120" 
                      FontSize="18"
+                     MaxLength="4"
+                     HorizontalContentAlignment="Center"
                      x:Name="TBCode"/>
             <Button x:Name="BSign" 
                     Content="Войти"

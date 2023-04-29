@@ -4,13 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ServiceClientWpf.Pages"
-      xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"  
-      xmlns:qc="http://QuickConverter.CodePlex.com/"
+      xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase" xmlns:Converters="clr-namespace:ServiceClientWpf.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       x:Name="SCPage"
       Title="ServiceListPage">
 
+    <Page.Resources>
+        <Converters:WidthConverter x:Key="widthConvert" />
+    </Page.Resources>
+    
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -18,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <Grid Background="White">
-            <StackPanel Margin="15"
+            <StackPanel Margin="15 5"
                         Orientation="Horizontal">
                 <StackPanel.Style>
                     <Style TargetType="StackPanel">
@@ -41,18 +44,17 @@
                     <TextBlock Text="Поиск:"/>
                     <TextBox x:Name="TBSearch"
                              TextChanged="TBSearch_TextChanged"
-                             Height="35"
-                             Width="150"
+                             Height="25"
+                             Width="200"
                              Margin="10 0 0 0"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Сортировка:"/>
                     <ComboBox x:Name="CBSort"
                               SelectionChanged="CBSort_SelectionChanged"
-                              Width="{Binding ActualWidth, ElementName=TBSearch, Mode=OneWay}"
+                              Width="130"
                               Height="{Binding ActualHeight, ElementName=TBSearch, Mode=OneWay}">
-                        <ComboBoxItem Content="Все"
-                                      />
+                        <ComboBoxItem Content="Все"/>
                         <ComboBoxItem Content="По возрастанию"/>
                         <ComboBoxItem Content="По убыванию"/>
                     </ComboBox>
@@ -61,7 +63,7 @@
                     <TextBlock Text="Фильтрация:"/>
                     <ComboBox x:Name="CBFilter"
                               SelectionChanged="CBFilter_SelectionChanged"
-                              Width="{Binding ActualWidth, ElementName=TBSearch, Mode=OneWay}"
+                              Width="130"
                               Height="{Binding ActualHeight, ElementName=TBSearch, Mode=OneWay}">
                         <ComboBoxItem Content="Все"
                                       />
@@ -70,7 +72,6 @@
                         <ComboBoxItem Content="от 15 до 30%"/>
                         <ComboBoxItem Content="от 30 до 70%"/>
                         <ComboBoxItem Content="от 70 до 100%"/>
-                        
                     </ComboBox>
                 </StackPanel>
             </StackPanel>
@@ -79,26 +80,26 @@
         <ListView x:Name="LVService"
                   Grid.Row="1"
                   Width="{Binding ElementName=SCPage, Mode=OneWay}"
-                  d:ItemsSource="{d:SampleData ItemCount = 4}"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border x:Name="border"
                             BorderBrush="Black"
                             Height="165"
-                            Width="{qc:Binding '$P-40', P={Binding ElementName=LVService, Path=ActualWidth}}"
+                            Width="{Binding Path=ActualWidth, ElementName=LVService, Converter={StaticResource widthConvert}, ConverterParameter=40}"
                             Margin="5"
                             BorderThickness="1"
                             Padding="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{Binding ActualHeight, ElementName=border, Mode=OneWay}"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
                             <GridSplitter Grid.Column="1" 
-                                          Width="15"
+                                          Width="Auto"
+                                          IsEnabled="True"
                                           Background="Transparent"/>
 
                             <Border BorderThickness="1"

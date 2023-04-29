@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServiceClientWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800"
+        Title="MainWindow"
         MinWidth="900"
+        MinHeight="650"
         Icon="/Resources/Icon/school_logo.ico"
         WindowStartupLocation="CenterScreen">
     <Grid>

@@ -15,6 +15,12 @@ namespace ServiceClientWpf
     public partial class App : Application
     {
         public static ServiceDataBaseEntities DB = new ServiceDataBaseEntities();
-        public static bool AdminCode = false; 
+        public static bool AdminCode = false;
+
+        public App() : base()
+        {
+            QuickConverter.EquationTokenizer.AddNamespace(typeof(object));
+            QuickConverter.EquationTokenizer.AddNamespace(typeof(System.Windows.Visibility));
+        }
     }
 }
