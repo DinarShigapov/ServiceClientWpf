@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\
+C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\
 ServiceClientWpf
 none
 false
 DEBUG;TRACE
-C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\App.xaml
+C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\App.xaml
 21959758827
 4171066228
-24-1966133903
-19-448198120
+25-44355782
+19738647930
 MainWindow.xaml;Pages\ServiceListPage.xaml;
 
-False
+True
 
