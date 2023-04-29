@@ -90,6 +90,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ClientServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ServiceListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +115,7 @@
     <Compile Include="Model\Manufacturer.cs">
       <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PartialClass\Client.cs" />
     <Compile Include="Model\PartialClass\Service.cs" />
     <Compile Include="Model\Product.cs">
       <DependentUpon>ServiceDB.tt</DependentUpon>
@@ -162,6 +167,9 @@
     </Compile>
     <Compile Include="Pages\AddEditServicePage.xaml.cs">
       <DependentUpon>AddEditServicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ClientServicePage.xaml.cs">
+      <DependentUpon>ClientServicePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ServiceListPage.xaml.cs">
       <DependentUpon>ServiceListPage.xaml</DependentUpon>

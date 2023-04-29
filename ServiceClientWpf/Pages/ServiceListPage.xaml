@@ -79,7 +79,7 @@
         <ListView x:Name="LVService"
                   Grid.Row="1"
                   Width="{Binding ElementName=SCPage, Mode=OneWay}"
-                  d:ItemsSource="{d:SampleData ItemCount=5}"
+                  d:ItemsSource="{d:SampleData ItemCount = 4}"
                   ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -139,6 +139,10 @@
 
                                 <StackPanel Orientation="Horizontal"
                                             Grid.Row="5">
+                                    <Button x:Name="BAdd"
+                                            Content="Записать на прием"
+                                            Visibility="{Binding VisibilityAdmin}"
+                                            Click="BAdd_Click"/>
                                     <Button x:Name="BEdit"
                                             Content="редактировать"
                                             Visibility="{Binding VisibilityAdmin}"
@@ -148,17 +152,12 @@
                                             Visibility="{Binding VisibilityAdmin}"
                                             Click="BDelete_Click"
                                             Margin="5 0 0 0"/>
-
                                 </StackPanel>
                             </Grid>
-
                         </Grid>
-
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-
     </Grid>
 </Page>

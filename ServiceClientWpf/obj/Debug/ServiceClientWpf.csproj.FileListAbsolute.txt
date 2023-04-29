@@ -84,3 +84,5 @@ C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\o
 C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\AddEditServicePage.baml
 C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\AdminPanelWindow.g.cs
 C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\AdminPanelWindow.baml
+C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\ClientServicePage.g.cs
+C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\ClientServicePage.baml

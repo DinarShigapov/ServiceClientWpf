@@ -101,5 +101,12 @@ namespace ServiceClientWpf.Pages
             App.DB.SaveChanges();
             Refresh();
         }
+
+        private void BAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var addClientService = (sender as Button).DataContext as Service;
+            if (addClientService == null) return;
+            NavigationService.Navigate(new ClientServicePage(addClientService));
+        }
     }
 }
