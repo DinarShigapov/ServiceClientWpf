@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using ServiceClientWpf.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,6 +15,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ServiceClientWpf.Model;
+using System.Reflection;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace ServiceClientWpf.Pages
 {
@@ -25,11 +28,13 @@ namespace ServiceClientWpf.Pages
     public partial class AddEditServicePage : Page
     {
         Service contextService;
+        Service contextServiceSave;
 
         public AddEditServicePage(Service service)
         {
             InitializeComponent();
-            contextService = service;
+            contextService = service.Clone();
+            contextServiceSave = service;
             DataContext = contextService;
         }
 
@@ -46,6 +51,8 @@ namespace ServiceClientWpf.Pages
 
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
+            
+            TBTitle.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             string errorMessage = "";
             if (string.IsNullOrWhiteSpace(contextService.Title) == true)
             {
@@ -67,7 +74,15 @@ namespace ServiceClientWpf.Pages
                 return;
             }
 
-            
+            foreach (PropertyInfo property in typeof(Service).GetProperties().Where(p => p.CanWrite))
+            {
+
+                if (property.Name == "ClientService")
+                {
+                    break;
+                }
+                property.SetValue(contextServiceSave, property.GetValue(contextService, null), null);
+            }
 
 
 
@@ -79,6 +94,7 @@ namespace ServiceClientWpf.Pages
             App.DB.SaveChanges();
 
             NavigationService.Navigate(new ServiceListPage());
+
         }
 
         private void TBCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -96,5 +112,15 @@ namespace ServiceClientWpf.Pages
                 e.Handled = true;
             }
         }
+
+        private void BBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ServiceListPage());
+        }
+
+
+
+
+
     }
 }

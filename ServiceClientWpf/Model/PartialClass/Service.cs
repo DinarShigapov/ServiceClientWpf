@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Windows;
 
 namespace ServiceClientWpf.Model
 {
-    public partial class Service
+    public partial class Service: ICloneable
     {
 
         public Visibility VisibilityAdmin
@@ -82,5 +83,14 @@ namespace ServiceClientWpf.Model
             }
         }
 
+        public Service Clone()
+        {
+            return (Service)MemberwiseClone();
+        }
+
+        object ICloneable.Clone()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

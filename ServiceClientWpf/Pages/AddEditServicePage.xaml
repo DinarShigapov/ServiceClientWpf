@@ -33,14 +33,14 @@
                 <StackPanel>
                     <TextBlock Text="Название"/>
                     <TextBox x:Name="TBTitle"
-                             Text="{Binding Title}"
+                             Text="{Binding Title, UpdateSourceTrigger=Explicit}"
                              Height="25"
                              PreviewTextInput="TBTitle_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Цена"/>
                     <TextBox x:Name="TBCost" 
-                             Text="{Binding Cost}"
+                             Text="{Binding Cost, UpdateSourceTrigger=Explicit}"
                              Height="25"
                              PreviewTextInput="TBCost_PreviewTextInput"/>
                 </StackPanel>
@@ -95,13 +95,22 @@
                 </Grid>
             </Border>
         </StackPanel>
-        <Button x:Name="BSave"
-                Click="BSave_Click"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Right"
-                Content="Сохранить"
-                Width="100"
-                Height="30"
-                Margin="0 0 10 10"/>
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 10 10">
+            <Button x:Name="BBack"
+                    Click="BBack_Click" 
+                    Content="Назад"
+                    Width="100"
+                    Height="30"/>
+            <Separator Width="10"
+                       Background="Transparent"/>
+            <Button x:Name="BSave"
+                    Click="BSave_Click"
+                    Content="Сохранить"
+                    Width="100"
+                    Height="30"/>
+        </StackPanel>
     </Grid>
 </Page>
