@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\App.xaml
-21959758827
+4-1139344953
 4171066228
-25-44355782
+26-1409474171
 19738647930
-MainWindow.xaml;Pages\ServiceListPage.xaml;
+AdminPanelWindow.xaml;MainWindow.xaml;Pages\AddEditServicePage.xaml;Pages\ServiceListPage.xaml;
 
-True
+False
 

@@ -28,7 +28,7 @@ namespace ServiceClientWpf.Pages
         public ServiceListPage()
         {
             InitializeComponent();
-            LVService.ItemsSource = App.DB.Service.ToList();
+            Refresh();
             CBFilter.SelectedIndex = 0;
             CBSort.SelectedIndex = 0;
             
@@ -36,7 +36,7 @@ namespace ServiceClientWpf.Pages
 
         private void Refresh() 
         {
-            IEnumerable<Service> services = App.DB.Service.ToList();
+            IEnumerable<Service> services = App.DB.Service.Where(x => x.IsDelete == false).ToList();
             if (CBSort.SelectedIndex == 1)
                 services = services.OrderBy(x => x.CostDiscount);
             else
@@ -81,6 +81,24 @@ namespace ServiceClientWpf.Pages
 
         private void CBFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Refresh();
+        }
+
+        private void BEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var editService = (sender as Button).DataContext as Service;
+            if (editService == null) return;
+
+            NavigationService.Navigate(new AddEditServicePage(editService));
+        }
+
+        private void BDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var deleteService = (sender as Button).DataContext as Service;
+            if (deleteService == null) return;
+
+            deleteService.IsDelete = true;
+            App.DB.SaveChanges();
             Refresh();
         }
     }

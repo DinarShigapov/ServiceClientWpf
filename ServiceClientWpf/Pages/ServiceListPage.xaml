@@ -79,7 +79,7 @@
         <ListView x:Name="LVService"
                   Grid.Row="1"
                   Width="{Binding ElementName=SCPage, Mode=OneWay}"
-                  d:ItemsSource="{d:SampleData ItemCount=4}"
+                  d:ItemsSource="{d:SampleData ItemCount=5}"
                   ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -120,19 +120,33 @@
                                            TextWrapping="Wrap"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Bottom"/>
-                                <TextBlock Text="{Binding Title}"
-                                           Grid.Row="1"
-                                           TextWrapping="Wrap"
-                                           FontSize="18"/>
-                                <TextBlock Text="{Binding Title}"
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Cost}"
+                                               TextDecorations="Strikethrough"
+                                               TextWrapping="Wrap"
+                                               Visibility="{Binding VisibilityCost}"
+                                               FontSize="18"
+                                               Margin="0 0 10 0"/>
+                                    <TextBlock Text="{Binding StrCostTime}"
+                                               TextWrapping="Wrap"
+                                               FontSize="18"
+                                               />
+                                </StackPanel>
+                                <TextBlock Text="{Binding StrDiscount}"
                                            Grid.Row="2"
                                            VerticalAlignment="Top"
                                            FontSize="13"/>
 
                                 <StackPanel Orientation="Horizontal"
                                             Grid.Row="5">
-                                    <Button Content="редактировать"/>
-                                    <Button Content="удалить"
+                                    <Button x:Name="BEdit"
+                                            Content="редактировать"
+                                            Visibility="{Binding VisibilityAdmin}"
+                                            Click="BEdit_Click"/>
+                                    <Button x:Name="BDelete" 
+                                            Content="удалить"
+                                            Visibility="{Binding VisibilityAdmin}"
+                                            Click="BDelete_Click"
                                             Margin="5 0 0 0"/>
 
                                 </StackPanel>

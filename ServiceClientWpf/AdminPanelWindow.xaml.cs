@@ -5,38 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ServiceClientWpf.Pages;
 
 namespace ServiceClientWpf
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для AdminPanelWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AdminPanelWindow : Window
     {
-        public MainWindow()
+        public AdminPanelWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new ServiceListPage());
         }
 
-        private void BAdmin_Click(object sender, RoutedEventArgs e)
+        private void BSign_Click(object sender, RoutedEventArgs e)
         {
-            AdminPanelWindow admin = new AdminPanelWindow();
-            if (App.AdminCode == true)
+            var window = Application.Current.MainWindow as MainWindow;
+            if (window != null && TBCode.Text == "0000")
             {
-                App.AdminCode = false;
-                MainFrame.Navigate(new ServiceListPage());
+                App.AdminCode = true;
+                window.MainFrame.Navigate(new ServiceListPage());
+                this.Close();
             }
-            else
-                admin.Show();
+               
+
+
 
         }
     }

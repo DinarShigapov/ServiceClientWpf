@@ -1,0 +1,28 @@
+﻿<Window x:Class="ServiceClientWpf.AdminPanelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServiceClientWpf"
+        mc:Ignorable="d"
+        Title="Админка" Height="160" Width="250"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Пин-код"
+                       FontSize="18"
+                       HorizontalAlignment="Center"/>
+            <TextBox Width="120" 
+                     FontSize="18"
+                     x:Name="TBCode"/>
+            <Button x:Name="BSign" 
+                    Content="Войти"
+                    Width="70"
+                    Height="15"
+                    Margin="0 10 0 0"
+                    Click="BSign_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

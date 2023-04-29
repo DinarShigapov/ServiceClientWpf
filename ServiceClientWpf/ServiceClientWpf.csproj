@@ -67,10 +67,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AdminPanelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AdminPanelWindow.xaml.cs">
+      <DependentUpon>AdminPanelWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -79,6 +86,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AddEditServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ServiceListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,32 +97,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Client.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ClientService.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DocumentByService.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Gender.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Manufacturer.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PartialClass\Service.cs" />
     <Compile Include="Model\Product.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ProductPhoto.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ProductSale.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ServiceDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -144,10 +155,13 @@
       <DependentUpon>ServiceList.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\ServicePhoto.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Tag.cs">
-      <DependentUpon>ServiceList.tt</DependentUpon>
+      <DependentUpon>ServiceDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddEditServicePage.xaml.cs">
+      <DependentUpon>AddEditServicePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ServiceListPage.xaml.cs">
       <DependentUpon>ServiceListPage.xaml</DependentUpon>

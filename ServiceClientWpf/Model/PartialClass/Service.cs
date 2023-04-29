@@ -10,6 +10,17 @@ namespace ServiceClientWpf.Model
     public partial class Service
     {
 
+        public Visibility VisibilityAdmin
+        {
+            get 
+            {
+                if (App.AdminCode == true)
+                    return Visibility.Visible;
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
         public string Color
         {
             get
@@ -44,7 +55,7 @@ namespace ServiceClientWpf.Model
         {
             get
             {
-                if (Discount != 0 || Discount != null)
+                if (Discount > 0)
                     return $"*скидка {Discount * 100}%";
                 else
                     return $"";
@@ -65,10 +76,11 @@ namespace ServiceClientWpf.Model
             get
             {
                 if (Discount == 0 || Discount == null)
-                    return Cost;
+                    return (decimal)Cost;
                 else
                     return (decimal)Cost - Convert.ToDecimal(Cost) * Convert.ToDecimal(Discount);
             }
         }
+
     }
 }
