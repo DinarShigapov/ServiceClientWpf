@@ -37,10 +37,19 @@ namespace ServiceClientWpf.Pages
         {
             DateTime tomorrow = DateTime.Today.AddDays(1).AddHours(DateTime.Now.Hour);
             InitializeComponent();
-            LVService.ItemsSource = App.DB.ClientService.Where(
+            var buffer = App.DB.ClientService.Where(
                 x => x.StartTime >= DateTime.Now
                 && x.StartTime <= tomorrow
                 ).ToList();
+
+            if (buffer.Count == 0) 
+            {
+                LVService.Visibility = Visibility.Hidden;
+            }
+            else
+                LVService.Visibility = Visibility.Visible;
+
+            LVService.ItemsSource = buffer.ToList();
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)

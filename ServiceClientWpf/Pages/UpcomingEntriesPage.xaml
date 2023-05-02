@@ -13,6 +13,10 @@
     </Page.Resources>
 
     <Grid>
+        <TextBlock Text="Данных нет"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="40"/>
         <ListView x:Name="LVService"
                   Grid.Row="1"
                   Width="{Binding ElementName=SCPage, Mode=OneWay}"
