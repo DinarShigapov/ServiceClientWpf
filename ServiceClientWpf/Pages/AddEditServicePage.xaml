@@ -14,11 +14,17 @@
             <Setter Property="VerticalAlignment"  Value="Center"/>
         </Style>
     </Page.Resources>
-    
+
     <Grid>
-        <StackPanel VerticalAlignment="Center"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Top"
                     HorizontalAlignment="Center"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal" Grid.Row="1">
             <StackPanel x:Name="stackPanel" Orientation="Vertical"
                     Width="360">
                 <StackPanel.Style>
@@ -95,10 +101,49 @@
                 </Grid>
             </Border>
         </StackPanel>
+        <Grid Name="gridListView" Grid.Row="2" Height="220">
+            <StackPanel Name="stackPanelSize" Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Button x:Name="BSlideBack" Height="100"
+                        Content="❮"
+                        Click="BSlideBack_Click"/>
+                <ListView x:Name="LVAddImage" d:ItemsSource="{d:SampleData ItemCount=5}"
+                          Width="645"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Height="150"
+                                   Width="150"
+                                   Source="{Binding ServiceImage}"
+                                   Stretch="Uniform"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="MIAddImage" Header="Добавить"
+                                      Click="MIAddImage_Click"/>
+                            <MenuItem x:Name="MIDelImage" Header="Удалить"
+                                      Click="MIDelImage_Click"/>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                </ListView>
+                <Button x:Name="BSlideNext" 
+                        Height="100"
+                        Content="❯"
+                        Click="BSlideNext_Click"/>
+            </StackPanel>
+        </Grid>
         <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
-                    Margin="0 0 10 10">
+                    Margin="0 0 10 10" Grid.Row="4">
             <Button x:Name="BBack"
                     Click="BBack_Click" 
                     Content="Назад"

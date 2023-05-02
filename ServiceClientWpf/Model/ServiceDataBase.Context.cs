@@ -13,10 +13,10 @@ namespace ServiceClientWpf.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ServiceDataBaseEntities : DbContext
+    public partial class ServiceDataBaseEntities1 : DbContext
     {
-        public ServiceDataBaseEntities()
-            : base("name=ServiceDataBaseEntities")
+        public ServiceDataBaseEntities1()
+            : base("name=ServiceDataBaseEntities1")
         {
         }
     

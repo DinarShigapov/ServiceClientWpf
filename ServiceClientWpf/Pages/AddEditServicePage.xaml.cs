@@ -29,6 +29,8 @@ namespace ServiceClientWpf.Pages
     {
         Service contextService;
         Service contextServiceSave;
+        List<ServicePhoto> servicePhotoList = new List<ServicePhoto>();
+
 
         public AddEditServicePage(Service service)
         {
@@ -36,6 +38,8 @@ namespace ServiceClientWpf.Pages
             contextService = service.Clone();
             contextServiceSave = service;
             DataContext = contextService;
+            LVAddImage.ItemsSource = servicePhotoList = App.DB.ServicePhoto.Where(x => x.ServiceID == service.ID).ToList();
+            Update();
         }
 
         private void BAddImage_Click(object sender, RoutedEventArgs e)
@@ -74,6 +78,8 @@ namespace ServiceClientWpf.Pages
                 return;
             }
 
+
+
             foreach (PropertyInfo property in typeof(Service).GetProperties().Where(p => p.CanWrite))
             {
 
@@ -90,8 +96,22 @@ namespace ServiceClientWpf.Pages
             {
                 App.DB.Service.Add(contextService);
             }
-
             App.DB.SaveChanges();
+
+            foreach (var item in servicePhotoList)
+            {
+                if (item.ServiceID != 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    App.DB.ServicePhoto.Add(new ServicePhoto { ServiceID = contextService.ID, ServiceImage = item.ServiceImage});
+                    App.DB.SaveChanges();
+                }
+            }
+
+
 
             NavigationService.Navigate(new ServiceListPage());
 
@@ -119,8 +139,64 @@ namespace ServiceClientWpf.Pages
         }
 
 
+        int CurrentGroupList = 0;
+        int MaxPage = 4;
 
+        private void BSlideBack_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentGroupList--;
+            if (CurrentGroupList < 0)
+                CurrentGroupList = 0;
+            Update();
+        }
 
+        private void BSlideNext_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentGroupList++;
+            if (LVAddImage.Items.Count < 4)
+                CurrentGroupList--;
+            Update();
+        }
 
+        private void Update()
+        {
+            IEnumerable<ServicePhoto> photoList = servicePhotoList.ToList();
+            photoList = photoList.Skip(MaxPage * CurrentGroupList).Take(MaxPage);
+            LVAddImage.ItemsSource = photoList;
+        }
+
+        private void MIAddImage_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            if (dialog.ShowDialog().GetValueOrDefault())
+            {
+                servicePhotoList.Add(new ServicePhoto { ServiceImage = File.ReadAllBytes(dialog.FileName) });
+                Update();
+            }
+        }
+
+        private void MIDelImage_Click(object sender, RoutedEventArgs e)
+        {
+            var selectImage = LVAddImage.SelectedItem as ServicePhoto;
+
+            if (selectImage == null)
+                return;
+
+            if (selectImage.ServiceID != 0)
+            {
+                App.DB.ServicePhoto.Remove(selectImage);
+                servicePhotoList.Remove(selectImage);
+                LVAddImage.ItemsSource = servicePhotoList;
+                CurrentGroupList = 0;
+                MaxPage = 4;
+                Update();
+            }
+            else
+            {
+                servicePhotoList.Remove(selectImage);
+                LVAddImage.ItemsSource = servicePhotoList;
+                Update();
+            }
+        }
     }
 }

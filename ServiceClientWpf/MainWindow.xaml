@@ -8,6 +8,8 @@
         Title="MainWindow"
         MinWidth="900"
         MinHeight="650"
+        Width="900"
+        Height="650"
         Icon="/Resources/Icon/school_logo.ico"
         WindowStartupLocation="CenterScreen">
     <Grid>

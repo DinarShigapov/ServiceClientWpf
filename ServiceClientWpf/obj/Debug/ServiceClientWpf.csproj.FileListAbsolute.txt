@@ -93,3 +93,4 @@ C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\AdminPan
 C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\AddEditServicePage.baml
 C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\ClientServicePage.baml
 C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\progWeb\source\repos\ServiceListWpf\ServiceClientWpf\ServiceClientWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs

@@ -102,54 +102,54 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Client.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ClientService.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DocumentByService.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Gender.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Manufacturer.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PartialClass\Client.cs" />
     <Compile Include="Model\PartialClass\Service.cs" />
     <Compile Include="Model\Product.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ProductPhoto.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ProductSale.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ServiceDB.Context.cs">
+    <Compile Include="Model\ServiceDataBase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceDB.Context.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ServiceDB.cs">
+    <Compile Include="Model\ServiceDataBase.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ServiceDB.Designer.cs">
+    <Compile Include="Model\ServiceDataBase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceDB.edmx</DependentUpon>
+      <DependentUpon>ServiceDataBase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\ServicePhoto.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Tag.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>ServiceDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddEditServicePage.xaml.cs">
       <DependentUpon>AddEditServicePage.xaml</DependentUpon>
@@ -177,12 +177,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\ServiceDB.edmx">
+    <EntityDeploy Include="Model\ServiceDataBase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ServiceDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>ServiceDataBase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\ServiceDB.edmx.diagram">
-      <DependentUpon>ServiceDB.edmx</DependentUpon>
+    <None Include="Model\ServiceDataBase.edmx.diagram">
+      <DependentUpon>ServiceDataBase.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -197,20 +197,20 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\ServiceDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServiceDB.edmx</DependentUpon>
-      <LastGenOutput>ServiceDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\ServiceDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServiceDB.edmx</DependentUpon>
-      <LastGenOutput>ServiceDB.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Logo\school_logo.png" />
     <Resource Include="Resources\Icon\school_logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\ServiceDataBase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ServiceDataBase.edmx</DependentUpon>
+      <LastGenOutput>ServiceDataBase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\ServiceDataBase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ServiceDataBase.edmx</DependentUpon>
+      <LastGenOutput>ServiceDataBase.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
