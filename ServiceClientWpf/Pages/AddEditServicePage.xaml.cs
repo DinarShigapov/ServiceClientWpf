@@ -37,6 +37,8 @@ namespace ServiceClientWpf.Pages
             InitializeComponent();
             contextService = service.Clone();
             contextServiceSave = service;
+            contextService.DurationInSeconds /= 60;
+            contextService.Discount *= 100;
             DataContext = contextService;
             LVAddImage.ItemsSource = servicePhotoList = App.DB.ServicePhoto.Where(x => x.ServiceID == service.ID).ToList();
             Update();
