@@ -38,6 +38,14 @@
                     Width="110"
                     VerticalAlignment="Bottom"
                     Click="BAdmin_Click"/>
+            <Button x:Name="BEntries"
+                    Click="BEntries_Click"
+                    Grid.Row="2"
+                    Visibility="Collapsed"
+                    VerticalAlignment="Top"
+                    Content="Записи"
+                    Width="100"
+                />
 
         </Grid>
 

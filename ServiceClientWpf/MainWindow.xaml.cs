@@ -25,6 +25,7 @@ namespace ServiceClientWpf
         {
             InitializeComponent();
             MainFrame.Navigate(new ServiceListPage());
+           
         }
 
         private void BAdmin_Click(object sender, RoutedEventArgs e)
@@ -34,10 +35,16 @@ namespace ServiceClientWpf
             {
                 App.AdminCode = false;
                 MainFrame.Navigate(new ServiceListPage());
+                BEntries.Visibility = Visibility.Collapsed;
             }
             else
                 admin.Show();
 
+        }
+
+        private void BEntries_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new UpcomingEntriesPage());
         }
     }
 }

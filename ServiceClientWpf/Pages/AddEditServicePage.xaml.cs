@@ -37,8 +37,11 @@ namespace ServiceClientWpf.Pages
             InitializeComponent();
             contextService = service.Clone();
             contextServiceSave = service;
-            contextService.DurationInSeconds /= 60;
-            contextService.Discount *= 100;
+            if (contextService.ID != 0)
+            {
+                contextService.DurationInSeconds /= 60;
+                contextService.Discount *= 100;
+            }
             DataContext = contextService;
             LVAddImage.ItemsSource = servicePhotoList = App.DB.ServicePhoto.Where(x => x.ServiceID == service.ID).ToList();
             Update();
@@ -80,7 +83,8 @@ namespace ServiceClientWpf.Pages
                 return;
             }
 
-
+            contextService.DurationInSeconds *= 60;
+            contextService.Discount /= 100;
 
             foreach (PropertyInfo property in typeof(Service).GetProperties().Where(p => p.CanWrite))
             {
@@ -92,7 +96,7 @@ namespace ServiceClientWpf.Pages
                 property.SetValue(contextServiceSave, property.GetValue(contextService, null), null);
             }
 
-
+            
 
             if (contextService.ID == 0)
             {
@@ -112,11 +116,15 @@ namespace ServiceClientWpf.Pages
                     App.DB.SaveChanges();
                 }
             }
-
-
-
+            if (delPhotoList.Count > 0)
+            {
+                foreach (var item in delPhotoList)
+                {
+                    App.DB.ServicePhoto.Remove(item);
+                    App.DB.SaveChanges();
+                }
+            }
             NavigationService.Navigate(new ServiceListPage());
-
         }
 
         private void TBCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -165,6 +173,7 @@ namespace ServiceClientWpf.Pages
             IEnumerable<ServicePhoto> photoList = servicePhotoList.ToList();
             photoList = photoList.Skip(MaxPage * CurrentGroupList).Take(MaxPage);
             LVAddImage.ItemsSource = photoList;
+            
         }
 
         private void MIAddImage_Click(object sender, RoutedEventArgs e)
@@ -177,6 +186,7 @@ namespace ServiceClientWpf.Pages
             }
         }
 
+        List<ServicePhoto> delPhotoList = new List<ServicePhoto>();
         private void MIDelImage_Click(object sender, RoutedEventArgs e)
         {
             var selectImage = LVAddImage.SelectedItem as ServicePhoto;
@@ -186,7 +196,7 @@ namespace ServiceClientWpf.Pages
 
             if (selectImage.ServiceID != 0)
             {
-                App.DB.ServicePhoto.Remove(selectImage);
+                delPhotoList.Add(selectImage);
                 servicePhotoList.Remove(selectImage);
                 LVAddImage.ItemsSource = servicePhotoList;
                 CurrentGroupList = 0;
@@ -198,6 +208,36 @@ namespace ServiceClientWpf.Pages
                 servicePhotoList.Remove(selectImage);
                 LVAddImage.ItemsSource = servicePhotoList;
                 Update();
+            }
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void TBTime_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Regex.IsMatch(e.Text, @"[0-9]") == false)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            double timeMinToHour = double.Parse($"{TBTime.Text}{e.Text}");
+
+
+            if (timeMinToHour > 240)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TBTime_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
             }
         }
     }

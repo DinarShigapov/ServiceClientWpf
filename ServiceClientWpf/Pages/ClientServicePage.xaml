@@ -54,10 +54,32 @@
                     <StackPanel Margin="20 0 0 0">
                         <TextBlock Text="Время "
                                FontSize="17"/>
-                        <TextBox x:Name="TBTime"
-                                 Text="{Binding StartTime}"
-                                 Height="25"
-                                 Width="120"/>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Style.Resources>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="Height" Value="25"/>
+                                            <Setter Property="Width" Value="25"/>
+                                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                            <Setter Property="MaxLength" Value="2"/>
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </StackPanel.Style>
+                            <TextBox x:Name="TBTimeHour"
+                                     BorderThickness="1 1 0 1"
+                                     PreviewTextInput="TBTime_PreviewTextInput"/>
+                            <TextBlock Text=":" Margin="-2 0"
+                                       HorizontalAlignment="Center"
+                                       Panel.ZIndex="1"
+                                       FontSize="15"/>
+                            <TextBox x:Name="TBTimeMinute"
+                                     BorderThickness="0 1 1 1"
+                                     PreviewTextInput="TBTime_PreviewTextInput"
+                                     LostFocus="TBTimeMinute_LostFocus"/>
+                        </StackPanel>
                     </StackPanel>
                     
                 </StackPanel>

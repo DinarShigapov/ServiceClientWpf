@@ -39,7 +39,7 @@ namespace ServiceClientWpf.Pages
             IEnumerable<Service> services = App.DB.Service.Where(x => x.IsDelete == false).ToList();
             if (CBSort.SelectedIndex == 1)
                 services = services.OrderBy(x => x.CostDiscount);
-            else
+            else if (CBSort.SelectedIndex == 2)
                 services = services.OrderByDescending(x => x.CostDiscount);
 
             switch (CBFilter.SelectedIndex)
@@ -59,6 +59,9 @@ namespace ServiceClientWpf.Pages
                 case 5:
                     services = services.Where(x => x.Discount >= 0.70 && x.Discount < 1).ToList();
                     break;
+                default:
+                    break;
+                    
             }
 
             if (TBSearch.Text.Length > 0)
@@ -66,7 +69,7 @@ namespace ServiceClientWpf.Pages
                 || x.Description.ToLower().StartsWith(TBSearch.Text.ToLower()));
 
             LVService.ItemsSource = services.ToList();
-
+            TBCountService.Text = $"{services.Count()} из {App.DB.Service.Where(x => x.IsDelete == false).ToList().Count}";
         }
 
         private void CBSort_SelectionChanged(object sender, SelectionChangedEventArgs e)

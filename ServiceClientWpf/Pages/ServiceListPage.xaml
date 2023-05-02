@@ -18,6 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid Background="White">
@@ -38,7 +39,7 @@
                                 </Style.Resources>
                             </Style>
                         </Style.Resources>
-                    </Style>   
+                    </Style>
                 </StackPanel.Style>
                 <StackPanel>
                     <TextBlock Text="Поиск:"/>
@@ -76,7 +77,6 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-
         <ListView x:Name="LVService"
                   Grid.Row="1"
                   Width="{Binding ElementName=SCPage, Mode=OneWay}"
@@ -147,12 +147,12 @@
                                     <Button x:Name="BEdit"
                                             Content="редактировать"
                                             Visibility="{Binding VisibilityAdmin}"
-                                            Click="BEdit_Click"/>
+                                            Click="BEdit_Click"
+                                            Margin="10 0"/>
                                     <Button x:Name="BDelete" 
                                             Content="удалить"
                                             Visibility="{Binding VisibilityAdmin}"
-                                            Click="BDelete_Click"
-                                            Margin="5 0 0 0"/>
+                                            Click="BDelete_Click"/>
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -160,5 +160,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 10 0">
+            <TextBlock x:Name="TBCountService" 
+                       Text="100 из 100"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище ServiceDataBaseModelContainer" CdmEntityContainer="ServiceDataBaseEntities">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ServiceDBModelContainer" CdmEntityContainer="ServiceDBEntities">
     <EntitySetMapping Name="Client">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.Client">
+      <EntityTypeMapping TypeName="ServiceDBModel.Client">
         <MappingFragment StoreEntitySet="Client">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -18,7 +18,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ClientService">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.ClientService">
+      <EntityTypeMapping TypeName="ServiceDBModel.ClientService">
         <MappingFragment StoreEntitySet="ClientService">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ClientID" ColumnName="ClientID" />
@@ -29,7 +29,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DocumentByService">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.DocumentByService">
+      <EntityTypeMapping TypeName="ServiceDBModel.DocumentByService">
         <MappingFragment StoreEntitySet="DocumentByService">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ClientServiceID" ColumnName="ClientServiceID" />
@@ -38,7 +38,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Gender">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.Gender">
+      <EntityTypeMapping TypeName="ServiceDBModel.Gender">
         <MappingFragment StoreEntitySet="Gender">
           <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -46,7 +46,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Manufacturer">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.Manufacturer">
+      <EntityTypeMapping TypeName="ServiceDBModel.Manufacturer">
         <MappingFragment StoreEntitySet="Manufacturer">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -55,7 +55,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Product">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.Product">
+      <EntityTypeMapping TypeName="ServiceDBModel.Product">
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -68,7 +68,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductPhoto">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.ProductPhoto">
+      <EntityTypeMapping TypeName="ServiceDBModel.ProductPhoto">
         <MappingFragment StoreEntitySet="ProductPhoto">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -77,7 +77,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductSale">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.ProductSale">
+      <EntityTypeMapping TypeName="ServiceDBModel.ProductSale">
         <MappingFragment StoreEntitySet="ProductSale">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
@@ -88,7 +88,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Service">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.Service">
+      <EntityTypeMapping TypeName="ServiceDBModel.Service">
         <MappingFragment StoreEntitySet="Service">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -103,16 +103,17 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ServicePhoto">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.ServicePhoto">
+      <EntityTypeMapping TypeName="ServiceDBModel.ServicePhoto">
         <MappingFragment StoreEntitySet="ServicePhoto">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
           <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="ServiceImage" ColumnName="ServiceImage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tag">
-      <EntityTypeMapping TypeName="ServiceDataBaseModel.Tag">
+      <EntityTypeMapping TypeName="ServiceDBModel.Tag">
         <MappingFragment StoreEntitySet="Tag">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -120,7 +121,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="AttachedProduct" TypeName="ServiceDataBaseModel.AttachedProduct" StoreEntitySet="AttachedProduct">
+    <AssociationSetMapping Name="AttachedProduct" TypeName="ServiceDBModel.AttachedProduct" StoreEntitySet="AttachedProduct">
       <EndProperty Name="Product">
         <ScalarProperty Name="ID" ColumnName="MainProductID" />
       </EndProperty>
@@ -128,7 +129,7 @@
         <ScalarProperty Name="ID" ColumnName="AttachedProductID" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="TagOfClient" TypeName="ServiceDataBaseModel.TagOfClient" StoreEntitySet="TagOfClient">
+    <AssociationSetMapping Name="TagOfClient" TypeName="ServiceDBModel.TagOfClient" StoreEntitySet="TagOfClient">
       <EndProperty Name="Client">
         <ScalarProperty Name="ID" ColumnName="ClientID" />
       </EndProperty>

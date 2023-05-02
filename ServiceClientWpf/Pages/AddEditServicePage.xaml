@@ -18,127 +18,137 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel VerticalAlignment="Top"
+        <Grid Grid.Row="1"
+              VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Top"
                     HorizontalAlignment="Center"
-                    Orientation="Horizontal" Grid.Row="1">
-            <StackPanel x:Name="stackPanel" Orientation="Vertical"
+                    Orientation="Horizontal">
+                <StackPanel x:Name="stackPanel" Orientation="Vertical"
                     Width="360">
-                <StackPanel.Style>
-                    <Style TargetType="StackPanel">
-                        <Style.Resources>
-                            <Style TargetType="StackPanel">
-                                <Setter Property="Margin" Value="0 0 0 10"/>
-                            </Style>
-                        </Style.Resources>
-                    </Style>
-                </StackPanel.Style>
-                <StackPanel>
-                    <TextBlock Text="Название"/>
-                    <TextBox x:Name="TBTitle"
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Style.Resources>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Margin" Value="0 0 0 10"/>
+                                </Style>
+                            </Style.Resources>
+                        </Style>
+                    </StackPanel.Style>
+                    <StackPanel>
+                        <TextBlock Text="Название"/>
+                        <TextBox x:Name="TBTitle"
                              Text="{Binding Title, UpdateSourceTrigger=Explicit}"
                              Height="25"
                              PreviewTextInput="TBTitle_PreviewTextInput"/>
-                </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="Цена"/>
-                    <TextBox x:Name="TBCost" 
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Цена"/>
+                        <TextBox x:Name="TBCost" 
                              Text="{Binding Cost, UpdateSourceTrigger=Explicit}"
                              Height="25"
                              PreviewTextInput="TBCost_PreviewTextInput"/>
-                </StackPanel>
-                <DockPanel VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal"
+                    </StackPanel>
+                    <DockPanel VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal"
                                 DockPanel.Dock="Right"
                                 VerticalAlignment="Center">
-                        <TextBlock Text="Скидка "/>
-                        <TextBox Text="{Binding Discount}"
+                            <TextBlock Text="Скидка "/>
+                            <TextBox Text="{Binding Discount}"
                                  Width="100"
-                                 Height="25"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
+                                 Height="25"
+                                 MaxLength="3"
+                                 PreviewTextInput="TBCost_PreviewTextInput"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
                             DockPanel.Dock="Left">
-                        <TextBlock Text="Время (сек) "/>
-                        <TextBox x:Name="TBTime"
-                                 Text="{Binding DurationInSeconds}"
-                                 Width="70"
-                                 Height="25"/>
-                    </StackPanel>
-                </DockPanel>
-                <StackPanel>
-                    <TextBlock Text="Описание"/>
-                    <TextBox Text="{Binding Description}"
+                            <TextBlock Text="Время (мин) "/>
+                            <TextBox x:Name="TBTime"
+                                     Text="{Binding DurationInSeconds}"
+                                     Width="70"
+                                     Height="25"
+                                     PreviewTextInput="TBTime_PreviewTextInput"
+                                     PreviewKeyDown="TBTime_PreviewKeyDown"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <StackPanel>
+                        <TextBlock Text="Описание"/>
+                        <TextBox Text="{Binding Description}"
                              TextWrapping="Wrap"
                              Height="130"
                              VerticalContentAlignment="Top"
                              Padding="5"
                              Margin="0"/>
-                </StackPanel>
+                    </StackPanel>
 
-            </StackPanel>
-            <Border x:Name="border"                    
+                </StackPanel>
+                <Border x:Name="border"                    
                     Width="{Binding ActualHeight, ElementName=stackPanel, Mode=OneWay}"
                     BorderThickness="1"
                     Height="312"
                     BorderBrush="Black"
                     Margin="10 0 0 0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="214*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Image Source="{Binding MainImage}"/>
-                    <GridSplitter Background="Black" Grid.Row="1"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="214*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding MainImage}"/>
+                        <GridSplitter Background="Black" Grid.Row="1"
                                   Height="2"/>
-                    <Button x:Name="BAddImage"
+                        <Button x:Name="BAddImage"
                             Grid.Row="2"
                             Content="+"
                             Click="BAddImage_Click"/>
-                </Grid>
-            </Border>
-        </StackPanel>
-        <Grid Name="gridListView" Grid.Row="2" Height="220">
-            <StackPanel Name="stackPanelSize" Orientation="Horizontal"
+                    </Grid>
+                </Border>
+            </StackPanel>
+            <Grid Name="gridListView" Height="220" Grid.Row="2">
+                <StackPanel Name="stackPanelSize" Orientation="Horizontal"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
-                <Button x:Name="BSlideBack" Height="100"
+                    <Button x:Name="BSlideBack" Height="100"
                         Content="❮"
                         Click="BSlideBack_Click"/>
-                <ListView x:Name="LVAddImage" d:ItemsSource="{d:SampleData ItemCount=5}"
+                    <ListView x:Name="LVAddImage" d:ItemsSource="{d:SampleData ItemCount=5}"
                           Width="645"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
                           ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Height="150"
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Height="150"
                                    Width="150"
                                    Source="{Binding ServiceImage}"
                                    Stretch="Uniform"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem x:Name="MIAddImage" Header="Добавить"
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="MIAddImage" Header="Добавить"
                                       Click="MIAddImage_Click"/>
-                            <MenuItem x:Name="MIDelImage" Header="Удалить"
+                                <MenuItem x:Name="MIDelImage" Header="Удалить"
                                       Click="MIDelImage_Click"/>
-                        </ContextMenu>
-                    </ListView.ContextMenu>
-                </ListView>
-                <Button x:Name="BSlideNext" 
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+                    <Button x:Name="BSlideNext" 
                         Height="100"
                         Content="❯"
                         Click="BSlideNext_Click"/>
-            </StackPanel>
+                </StackPanel>
+            </Grid>
         </Grid>
         <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Bottom"

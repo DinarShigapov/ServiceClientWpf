@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,7 +41,12 @@ namespace ServiceClientWpf.Pages
                 errorMessage += "Выберите клиента\n";
             }
 
-            if (!(contextService.DurationInSeconds > 0 && contextService.DurationInSeconds <= 14400))
+            if (TBDate.SelectedDate == null || TBDate.SelectedDate.Value < DateTime.Now)
+            {
+                errorMessage += "Введите корректную дату\n";
+            }
+
+            if (int.Parse(TBTimeHour.Text) < 7)
             {
                 errorMessage += "Введите время\n";
             }
@@ -51,18 +57,58 @@ namespace ServiceClientWpf.Pages
                 return;
             }
 
+            var date = TBDate.DisplayDate;
 
-
-
-
-            if (contextService.ID == 0)
-            {
-                App.DB.Service.Add(contextService);
-            }
+            App.DB.ClientService.Add(new ClientService 
+            { 
+                Service = contextService, 
+                Client = (Client)CBClient.SelectedItem,
+                StartTime = new DateTime
+                (
+                    date.Year, 
+                    date.Month, 
+                    date.Day, 
+                    int.Parse(TBTimeHour.Text.ToString()), 
+                    int.Parse(TBTimeMinute.Text.ToString()),
+                    0
+                )
+            });
 
             App.DB.SaveChanges();
 
             NavigationService.Navigate(new ServiceListPage());
+        }
+
+        private void TBTime_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+
+            if (Regex.IsMatch(e.Text, @"[0-9]") == false)
+            {
+                e.Handled = true;
+                return;
+            }
+
+
+            if (textBox == TBTimeMinute 
+                && int.Parse($"{textBox.Text}{e.Text}") >= 60)
+            {
+                e.Handled = true;
+            }
+
+            if (textBox == TBTimeHour
+                && int.Parse($"{textBox.Text}{e.Text}") > 16)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TBTimeMinute_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TBTimeMinute.Text == "")
+            {
+                TBTimeMinute.Text = "00";
+            }
         }
     }
 }
