@@ -131,3 +131,5 @@ C:\Users\Fl4son\Source\Repos\DinarShigapov\ServiceClientWpf\ServiceClientWpf\obj
 C:\Users\Fl4son\Source\Repos\DinarShigapov\ServiceClientWpf\ServiceClientWpf\obj\Debug\ServiceClientWpf.pdb
 C:\Users\Fl4son\Source\Repos\DinarShigapov\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\UpcomingEntriesPage.g.cs
 C:\Users\Fl4son\Source\Repos\DinarShigapov\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\UpcomingEntriesPage.baml
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\UpcomingEntriesPage.g.cs
+C:\Users\dinar\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\UpcomingEntriesPage.baml

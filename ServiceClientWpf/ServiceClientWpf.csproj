@@ -106,70 +106,55 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Client.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ClientService.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DocumentByService.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Gender.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Manufacturer.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model14.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model14.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model14.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model14.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model14.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model14.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\PartialClass\Client.cs" />
     <Compile Include="Model\PartialClass\ClientService.cs" />
     <Compile Include="Model\PartialClass\Service.cs" />
     <Compile Include="Model\Product.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ProductPhoto.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ProductSale.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ServiceDataBase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceDataBase.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ServiceDataBase.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceDataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ServiceDataBase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceDataBase.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ServiceDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ServiceDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ServiceDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceDB.edmx</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ServicePhoto.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Tag.cs">
-      <DependentUpon>ServiceDB.tt</DependentUpon>
+      <DependentUpon>Model14.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddEditServicePage.xaml.cs">
       <DependentUpon>AddEditServicePage.xaml</DependentUpon>
@@ -200,19 +185,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\ServiceDataBase.edmx">
+    <EntityDeploy Include="Model\Model14.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ServiceDataBase.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model14.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\ServiceDataBase.edmx.diagram">
-      <DependentUpon>ServiceDataBase.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="Model\ServiceDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ServiceDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\ServiceDB.edmx.diagram">
-      <DependentUpon>ServiceDB.edmx</DependentUpon>
+    <None Include="Model\Model14.edmx.diagram">
+      <DependentUpon>Model14.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -231,25 +209,15 @@
     <Resource Include="Resources\Icon\school_logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\ServiceDataBase.Context.tt">
+    <Content Include="Model\Model14.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServiceDataBase.edmx</DependentUpon>
-      <LastGenOutput>ServiceDataBase.Context.cs</LastGenOutput>
+      <DependentUpon>Model14.edmx</DependentUpon>
+      <LastGenOutput>Model14.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\ServiceDataBase.tt">
+    <Content Include="Model\Model14.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServiceDataBase.edmx</DependentUpon>
-      <LastGenOutput>ServiceDataBase.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\ServiceDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServiceDB.edmx</DependentUpon>
-      <LastGenOutput>ServiceDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\ServiceDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServiceDB.edmx</DependentUpon>
-      <LastGenOutput>ServiceDB.cs</LastGenOutput>
+      <DependentUpon>Model14.edmx</DependentUpon>
+      <LastGenOutput>Model14.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
