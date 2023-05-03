@@ -35,7 +35,7 @@ namespace ServiceClientWpf.Pages
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
             string errorMessage = "";
-
+            string timeBuff = $"{TBTimeHour.Text}:{TBTimeMinute.Text}";
             if (CBClient.SelectedItem == null)
             {
                 errorMessage += "Выберите клиента\n";
@@ -46,10 +46,23 @@ namespace ServiceClientWpf.Pages
                 errorMessage += "Введите корректную дату\n";
             }
 
-            if (int.Parse(TBTimeHour.Text) < 7)
+
+            if (TimeSpan.TryParse(timeBuff, out TimeSpan timeSpan) == false)
             {
-                errorMessage += "Введите время\n";
+                errorMessage += "Введите корректное время\n";
             }
+            else
+            {
+                var timeCheck = App.DB.ClientService.FirstOrDefault(x =>
+                x.StartTime.Hour == int.Parse(TBTimeHour.Text)
+                && x.StartTime.Minute == int.Parse(TBTimeMinute.Text));
+
+                if (timeCheck != null)
+                {
+                    errorMessage += $"На данное время есть запись\n";
+                }
+            }
+
 
             if (string.IsNullOrWhiteSpace(errorMessage) == false)
             {
@@ -109,6 +122,9 @@ namespace ServiceClientWpf.Pages
             {
                 TBTimeMinute.Text = "00";
             }
+            else if (int.Parse(TBTimeMinute.Text) < 10)
+                TBTimeMinute.Text = "0" + TBTimeMinute.Text;
+
         }
     }
 }

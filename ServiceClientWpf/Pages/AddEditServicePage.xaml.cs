@@ -77,6 +77,7 @@ namespace ServiceClientWpf.Pages
                 errorMessage += "Введите время\n";
             }
 
+
             if (string.IsNullOrWhiteSpace(errorMessage) == false)
             {
                 MessageBox.Show(errorMessage);
