@@ -28,24 +28,27 @@
             <GridSplitter Grid.Row="1"
                           Height="10"
                           Background="Transparent"/>
-
             <Image Source="/Resources/Logo/school_logo.png" 
                    HorizontalAlignment="Center"/>
-
             <Button x:Name="BAdmin" 
                     Content="Админ панель"
                     Grid.Row="5"
                     Width="110"
                     VerticalAlignment="Bottom"
                     Click="BAdmin_Click"/>
-            <Button x:Name="BEntries"
+            <StackPanel x:Name="SPAdminPanel" 
+                        Grid.Row="2"
+                        Visibility="Collapsed">
+                <Button x:Name="BEntries"
                     Click="BEntries_Click"
-                    Grid.Row="2"
-                    Visibility="Collapsed"
-                    VerticalAlignment="Top"
                     Content="Записи"
+                    Width="100"/>
+                <Button x:Name="BServiceList"
+                    Click="BServiceList_Click"
+                    Content="Услуги"
                     Width="100"
                 />
+            </StackPanel>
 
         </Grid>
 

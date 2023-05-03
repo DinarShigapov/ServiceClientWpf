@@ -51,17 +51,6 @@ namespace ServiceClientWpf.Pages
             {
                 errorMessage += "Введите корректное время\n";
             }
-            else
-            {
-                var timeCheck = App.DB.ClientService.FirstOrDefault(x =>
-                x.StartTime.Hour == int.Parse(TBTimeHour.Text)
-                && x.StartTime.Minute == int.Parse(TBTimeMinute.Text));
-
-                if (timeCheck != null)
-                {
-                    errorMessage += $"На данное время есть запись\n";
-                }
-            }
 
 
             if (string.IsNullOrWhiteSpace(errorMessage) == false)

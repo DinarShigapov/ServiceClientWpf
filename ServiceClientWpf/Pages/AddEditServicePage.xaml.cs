@@ -150,8 +150,7 @@ namespace ServiceClientWpf.Pages
         }
 
 
-        int CurrentGroupList = 0;
-        int MaxPage = 4;
+        
 
         private void BSlideBack_Click(object sender, RoutedEventArgs e)
         {
@@ -174,9 +173,10 @@ namespace ServiceClientWpf.Pages
             IEnumerable<ServicePhoto> photoList = servicePhotoList.ToList();
             photoList = photoList.Skip(MaxPage * CurrentGroupList).Take(MaxPage);
             LVAddImage.ItemsSource = photoList;
-            
         }
 
+        int CurrentGroupList = 0;
+        int MaxPage = 4;
         private void MIAddImage_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();

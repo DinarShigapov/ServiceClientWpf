@@ -160,11 +160,30 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="2"
+        <Grid Grid.Row="2">
+            <StackPanel HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Margin="10 0 0 0">
+                <Button x:Name="BLeft"
+                        Content="❮"
+                        Click="BButton_Click"/>
+                <TextBlock x:Name="TBCountPage" Text="0/0"/>
+                <Button x:Name="BRight"
+                        Content="❯"
+                        Click="BButton_Click"/>
+                <ComboBox x:Name="InPages"
+                          SelectionChanged="InPages_SelectionChanged">
+                    <ComboBoxItem>3</ComboBoxItem>
+                    <ComboBoxItem>5</ComboBoxItem>
+                    <ComboBoxItem>10</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel 
                     HorizontalAlignment="Right"
                     Margin="0 0 10 0">
-            <TextBlock x:Name="TBCountService" 
+                <TextBlock x:Name="TBCountService" 
                        Text="100 из 100"/>
-        </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

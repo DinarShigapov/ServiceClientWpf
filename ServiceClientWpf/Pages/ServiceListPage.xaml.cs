@@ -25,13 +25,17 @@ namespace ServiceClientWpf.Pages
     public partial class ServiceListPage : Page
     {
 
+        int MaxPage = 0; 
+        int currentPage = 0;
+        int inpages = 0;
+
         public ServiceListPage()
         {
             InitializeComponent();
-            Refresh();
+            InPages.SelectedIndex = 0;
             CBFilter.SelectedIndex = 0;
             CBSort.SelectedIndex = 0;
-            
+            Refresh();
         }
 
         private void Refresh() 
@@ -64,9 +68,23 @@ namespace ServiceClientWpf.Pages
                     
             }
 
+
+
             if (TBSearch.Text.Length > 0)
                 services = services.Where(x => x.Title.ToLower().StartsWith(TBSearch.Text.ToLower())
                 || x.Description.ToLower().StartsWith(TBSearch.Text.ToLower()));
+
+            MaxPage = 0;
+            int servCount = 0;
+            do
+            {
+                servCount += inpages; 
+                MaxPage++;
+            } 
+            while (servCount < services.Count());
+
+            TBCountPage.Text = $"{currentPage + 1}/{MaxPage}";
+            services = services.Skip(inpages * currentPage).Take(inpages);
 
             LVService.ItemsSource = services.ToList();
             TBCountService.Text = $"{services.Count()} из {App.DB.Service.Where(x => x.IsDelete == false).ToList().Count}";
@@ -81,6 +99,7 @@ namespace ServiceClientWpf.Pages
         {
             Refresh();
         }
+
 
         private void CBFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -111,5 +130,42 @@ namespace ServiceClientWpf.Pages
             if (addClientService == null) return;
             NavigationService.Navigate(new ClientServicePage(addClientService));
         }
+
+        private void InPages_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (InPages.SelectedIndex == 0)
+            {
+                inpages = 3;
+            }
+            if (InPages.SelectedIndex == 1)
+            {
+                inpages = 5;
+            }
+            if (InPages.SelectedIndex == 2)
+            {
+                inpages = 10;
+            }
+            currentPage = 0;
+            Refresh();
+        }
+
+        private void BButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (sender == BRight)
+            {
+                if (currentPage == MaxPage - 1)
+                    currentPage = 0;
+                else currentPage++;
+            }
+            else if (sender == BLeft)
+            {
+                if (currentPage == 0)
+                    currentPage = MaxPage - 1;
+                else currentPage--;
+            }
+            Refresh();
+        }
+
     }
 }

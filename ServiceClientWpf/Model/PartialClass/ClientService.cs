@@ -14,8 +14,8 @@ namespace ServiceClientWpf.Model
             get 
             {
                 var time = StartTime - DateTime.Now;
-                return $"{time.ToString("hh")} ч." +
-                    $"{time.ToString("mm")} мин";
+                return $"{time.ToString("hh")}ч. " +
+                    $"{time.ToString("mm")}мин";
             }
         }
 

@@ -26,7 +26,7 @@ namespace ServiceClientWpf.Pages
         {
             InitializeComponent();
             Refresh();
-            var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            var dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 30);
             dispatcherTimer.Start();
@@ -36,13 +36,12 @@ namespace ServiceClientWpf.Pages
         private void Refresh() 
         {
             DateTime tomorrow = DateTime.Today.AddDays(1).AddHours(DateTime.Now.Hour);
-            InitializeComponent();
-            var buffer = App.DB.ClientService.Where(
+            IEnumerable<ClientService> buffer = App.DB.ClientService.Where(
                 x => x.StartTime >= DateTime.Now
                 && x.StartTime <= tomorrow
-                ).ToList();
+                ).ToList().OrderBy(x => x.StartTime);
 
-            if (buffer.Count == 0) 
+            if (buffer.Count() == 0) 
             {
                 LVService.Visibility = Visibility.Hidden;
             }

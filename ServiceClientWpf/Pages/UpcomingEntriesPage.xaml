@@ -65,7 +65,7 @@
                                 <StackPanel Grid.Row="2">
                                     <TextBlock Text="Дата и время"
                                            FontSize="13"/>
-                                    <TextBlock Text="{Binding StartTime}"
+                                    <TextBlock Text="{Binding StartTime, StringFormat='{}{0:dd.MM.yy HH:mm}'}"
                                                FontSize="15"/>
                                 </StackPanel>
                             </Grid>

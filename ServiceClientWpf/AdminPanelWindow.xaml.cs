@@ -34,7 +34,7 @@ namespace ServiceClientWpf
                 App.AdminCode = true;
                 window.MainFrame.Navigate(new ServiceListPage());
                 this.Close();
-                window.BEntries.Visibility = Visibility.Visible;
+                window.SPAdminPanel.Visibility = Visibility.Visible;
             }
         }
     }
