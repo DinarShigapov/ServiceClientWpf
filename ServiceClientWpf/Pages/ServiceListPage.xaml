@@ -178,6 +178,10 @@
                     <ComboBoxItem>10</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
+            <Button x:Name="BAddService"
+                    Content="Добавить услугу"
+                    Width="140"
+                    Click="BAddService_Click"/>
             <StackPanel 
                     HorizontalAlignment="Right"
                     Margin="0 0 10 0">

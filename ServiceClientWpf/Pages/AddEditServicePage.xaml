@@ -59,9 +59,10 @@
                     <StackPanel>
                         <TextBlock Text="Цена"/>
                         <TextBox x:Name="TBCost" 
-                             Text="{Binding Cost, UpdateSourceTrigger=Explicit}"
-                             Height="25"
-                             PreviewTextInput="TBCost_PreviewTextInput"/>
+                                 Text="{Binding Cost}"
+                                 Height="25"
+                                 PreviewTextInput="TBCost_PreviewTextInput"
+                                 PreviewKeyDown="TBTime_PreviewKeyDown"/>
                     </StackPanel>
                     <DockPanel VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal"

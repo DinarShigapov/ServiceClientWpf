@@ -67,9 +67,16 @@ namespace ServiceClientWpf.Pages
             {
                 errorMessage += "Введите название\n";
             }
-            if (contextService.Cost < 0)
+            if (contextService.Cost < 0 ||
+                contextService.Cost == null)
             {
                 errorMessage += "Введите корректную цену\n";
+            }
+
+            if (contextService.Discount < 0 ||
+                contextService.Discount == null)
+            {
+                errorMessage += "Введите корректную скидку\n";
             }
 
             if (!(contextService.DurationInSeconds > 0 && contextService.DurationInSeconds <= 14400))

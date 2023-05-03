@@ -167,5 +167,9 @@ namespace ServiceClientWpf.Pages
             Refresh();
         }
 
+        private void BAddService_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddEditServicePage(new Service()));
+        }
     }
 }
