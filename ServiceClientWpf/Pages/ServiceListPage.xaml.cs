@@ -38,6 +38,8 @@ namespace ServiceClientWpf.Pages
             Refresh();
         }
 
+
+
         private void Refresh() 
         {
             IEnumerable<Service> services = App.DB.Service.Where(x => x.IsDelete == false).ToList();
@@ -167,9 +169,5 @@ namespace ServiceClientWpf.Pages
             Refresh();
         }
 
-        private void BAddService_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new AddEditServicePage(new Service()));
-        }
     }
 }

@@ -139,19 +139,18 @@
                                            FontSize="13"/>
 
                                 <StackPanel Orientation="Horizontal"
-                                            Grid.Row="5">
+                                            Grid.Row="5"
+                                            Visibility="{Binding VisibilityAdmin}">
                                     <Button x:Name="BAdd"
                                             Content="Записать на прием"
-                                            Visibility="{Binding VisibilityAdmin}"
                                             Click="BAdd_Click"/>
                                     <Button x:Name="BEdit"
                                             Content="редактировать"
-                                            Visibility="{Binding VisibilityAdmin}"
                                             Click="BEdit_Click"
                                             Margin="10 0"/>
                                     <Button x:Name="BDelete" 
                                             Content="удалить"
-                                            Visibility="{Binding VisibilityAdmin}"
+
                                             Click="BDelete_Click"/>
                                 </StackPanel>
                             </Grid>
@@ -166,7 +165,8 @@
                         Margin="10 0 0 0">
                 <Button x:Name="BLeft"
                         Content="❮"
-                        Click="BButton_Click"/>
+                        Click="BButton_Click"
+                        Visibility="{Binding VisibilityAdmin}"/>
                 <TextBlock x:Name="TBCountPage" Text="0/0"/>
                 <Button x:Name="BRight"
                         Content="❯"
@@ -178,10 +178,6 @@
                     <ComboBoxItem>10</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            <Button x:Name="BAddService"
-                    Content="Добавить услугу"
-                    Width="140"
-                    Click="BAddService_Click"/>
             <StackPanel 
                     HorizontalAlignment="Right"
                     Margin="0 0 10 0">

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ServiceClientWpf.Model;
 using ServiceClientWpf.Pages;
 
 namespace ServiceClientWpf
@@ -25,7 +26,10 @@ namespace ServiceClientWpf
         {
             InitializeComponent();
             MainFrame.Navigate(new ServiceListPage());
-           
+            SPAdminPanel.Visibility = VisibilityAdminButton;
+
+
+
         }
 
         private void BAdmin_Click(object sender, RoutedEventArgs e)
@@ -42,6 +46,11 @@ namespace ServiceClientWpf
 
         }
 
+        private void BAddService_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new AddEditServicePage(new Service()));
+        }
+
         private void BEntries_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new UpcomingEntriesPage());
@@ -50,6 +59,17 @@ namespace ServiceClientWpf
         private void BServiceList_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new ServiceListPage());
+        }
+
+        public static Visibility VisibilityAdminButton
+        {
+            get
+            {
+                if (App.AdminCode == true)
+                    return Visibility.Visible;
+                else
+                    return Visibility.Collapsed;
+            }
         }
     }
 }

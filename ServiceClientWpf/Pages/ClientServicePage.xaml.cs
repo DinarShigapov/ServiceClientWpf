@@ -32,8 +32,11 @@ namespace ServiceClientWpf.Pages
             CBClient.ItemsSource = App.DB.Client.ToList();
         }
 
+
+
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
+
             string errorMessage = "";
             string timeBuff = $"{TBTimeHour.Text}:{TBTimeMinute.Text}";
             if (CBClient.SelectedItem == null)
@@ -45,6 +48,7 @@ namespace ServiceClientWpf.Pages
             {
                 errorMessage += "Введите корректную дату\n";
             }
+            
 
 
             if (TimeSpan.TryParse(timeBuff, out TimeSpan timeSpan) == false)
@@ -111,7 +115,7 @@ namespace ServiceClientWpf.Pages
             {
                 TBTimeMinute.Text = "00";
             }
-            else if (int.Parse(TBTimeMinute.Text) < 10)
+            else if (int.Parse(TBTimeMinute.Text) < 10 && int.Parse(TBTimeMinute.Text) != 0)
                 TBTimeMinute.Text = "0" + TBTimeMinute.Text;
 
         }

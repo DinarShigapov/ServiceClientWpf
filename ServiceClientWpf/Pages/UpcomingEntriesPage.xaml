@@ -32,9 +32,9 @@
                             Padding="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="280"/>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="292*"/>
+                                <ColumnDefinition Width="200*"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="200*"/>
                             </Grid.ColumnDefinitions>
@@ -48,9 +48,9 @@
 
                             <Grid Margin="10 0 0 0">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition/>
                                     <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="10"/>
-                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <StackPanel>
                                     <TextBlock Text="Услуга"
@@ -58,16 +58,17 @@
                                            HorizontalAlignment="Center"/>
                                     <TextBlock Text="{Binding Service.Title}"
                                                TextWrapping="Wrap"
-                                               FontSize="15"/>
+                                               FontSize="15"
+                                               TextTrimming="CharacterEllipsis"/>
                                 </StackPanel>
                                 <Separator Grid.Row="1"
-                                           Width="160"/>
-                                <StackPanel Grid.Row="2">
-                                    <TextBlock Text="Дата и время"
-                                           FontSize="13"/>
-                                    <TextBlock Text="{Binding StartTime, StringFormat='{}{0:dd.MM.yy HH:mm}'}"
-                                               FontSize="15"/>
-                                </StackPanel>
+                                           Width="160"
+                                           VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding StartTime, StringFormat=F, ConverterCulture=RU}"
+                                           FontSize="12"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Center"
+                                           Grid.Row="3"/>
                             </Grid>
 
                             <Grid Grid.Column="2"
@@ -85,13 +86,17 @@
                                                FontSize="15"/>
                                 </StackPanel>
                             </Grid>
-
-                            <TextBlock x:Name="TBStartTime" Grid.Column="4"
-                                       Text="{Binding EndTime, StringFormat='Осталось: {0}'}"
+                            <TextBlock Grid.Column="4"
                                        HorizontalAlignment="Center"
                                        Foreground="{Binding ColorTime}"
-                                       FontSize="20"/>
-
+                                       FontSize="20">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} ч. {1} мин.">
+                                        <Binding Path="EndTime.Hours"/>
+                                        <Binding Path="EndTime.Minutes"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </Grid>
                     </Border>
                 </DataTemplate>

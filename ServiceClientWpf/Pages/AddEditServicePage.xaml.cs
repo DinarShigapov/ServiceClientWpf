@@ -19,6 +19,8 @@ using ServiceClientWpf.Model;
 using System.Reflection;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using ValidateService = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace ServiceClientWpf.Pages
 {
@@ -30,6 +32,8 @@ namespace ServiceClientWpf.Pages
         Service contextService;
         Service contextServiceSave;
         List<ServicePhoto> servicePhotoList = new List<ServicePhoto>();
+        List<ServicePhoto> delPhotoList = new List<ServicePhoto>();
+
 
 
         public AddEditServicePage(Service service)
@@ -39,12 +43,30 @@ namespace ServiceClientWpf.Pages
             contextServiceSave = service;
             if (contextService.ID != 0)
             {
+                TBIdClient.Visibility = Visibility.Visible;
                 contextService.DurationInSeconds /= 60;
                 contextService.Discount *= 100;
             }
             DataContext = contextService;
             LVAddImage.ItemsSource = servicePhotoList = App.DB.ServicePhoto.Where(x => x.ServiceID == service.ID).ToList();
             Update();
+        }
+
+        bool Validate(Service service)
+        {
+            var results = new List<ValidateService>();
+            var context = new ValidationContext(service);
+            if (!Validator.TryValidateObject(service, context, results, true))
+            {
+                string errorBuffer = "";
+                foreach (var error in results)
+                {
+                    errorBuffer += $"{error}\n";
+                }
+                MessageBox.Show(errorBuffer);
+                return true;
+            }
+            return false;
         }
 
         private void BAddImage_Click(object sender, RoutedEventArgs e)
@@ -60,34 +82,16 @@ namespace ServiceClientWpf.Pages
 
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
-            
-            TBTitle.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            string errorMessage = "";
-            if (string.IsNullOrWhiteSpace(contextService.Title) == true)
-            {
-                errorMessage += "Введите название\n";
-            }
-            if (contextService.Cost < 0 ||
-                contextService.Cost == null)
-            {
-                errorMessage += "Введите корректную цену\n";
-            }
-
-            if (contextService.Discount < 0 ||
-                contextService.Discount == null)
-            {
-                errorMessage += "Введите корректную скидку\n";
-            }
-
-            if (!(contextService.DurationInSeconds > 0 && contextService.DurationInSeconds <= 14400))
-            {
-                errorMessage += "Введите время\n";
-            }
 
 
-            if (string.IsNullOrWhiteSpace(errorMessage) == false)
+
+            if (Validate(contextService))
+                return;
+
+            if (contextService.DurationInSeconds > 240
+                || contextService.DurationInSeconds < 30)
             {
-                MessageBox.Show(errorMessage);
+                MessageBox.Show("Услуга больше 4 часов / Меньше 30 мин");
                 return;
             }
 
@@ -103,8 +107,6 @@ namespace ServiceClientWpf.Pages
                 }
                 property.SetValue(contextServiceSave, property.GetValue(contextService, null), null);
             }
-
-            
 
             if (contextService.ID == 0)
             {
@@ -124,6 +126,7 @@ namespace ServiceClientWpf.Pages
                     App.DB.SaveChanges();
                 }
             }
+
             if (delPhotoList.Count > 0)
             {
                 foreach (var item in delPhotoList)
@@ -155,9 +158,6 @@ namespace ServiceClientWpf.Pages
         {
             NavigationService.Navigate(new ServiceListPage());
         }
-
-
-        
 
         private void BSlideBack_Click(object sender, RoutedEventArgs e)
         {
@@ -194,7 +194,7 @@ namespace ServiceClientWpf.Pages
             }
         }
 
-        List<ServicePhoto> delPhotoList = new List<ServicePhoto>();
+
         private void MIDelImage_Click(object sender, RoutedEventArgs e)
         {
             var selectImage = LVAddImage.SelectedItem as ServicePhoto;
@@ -219,10 +219,6 @@ namespace ServiceClientWpf.Pages
             }
         }
 
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-
-        }
 
         private void TBTime_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -230,14 +226,6 @@ namespace ServiceClientWpf.Pages
             {
                 e.Handled = true;
                 return;
-            }
-
-            double timeMinToHour = double.Parse($"{TBTime.Text}{e.Text}");
-
-
-            if (timeMinToHour > 240)
-            {
-                e.Handled = true;
             }
         }
 
@@ -248,5 +236,6 @@ namespace ServiceClientWpf.Pages
                 e.Handled = true;
             }
         }
+
     }
 }

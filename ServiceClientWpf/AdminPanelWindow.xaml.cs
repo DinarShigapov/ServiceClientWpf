@@ -35,7 +35,9 @@ namespace ServiceClientWpf
                 window.MainFrame.Navigate(new ServiceListPage());
                 this.Close();
                 window.SPAdminPanel.Visibility = Visibility.Visible;
+
             }
         }
+
     }
 }

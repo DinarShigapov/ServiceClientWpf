@@ -46,44 +46,74 @@
                                     VerticalAlignment="Bottom"
                                     Margin="0 0 0 -2">
                             <TextBlock Text="Название"/>
-                            <TextBlock Text="{Binding ID, StringFormat='(Id: {0})'}"
+                            <TextBlock x:Name="TBIdClient" Text="{Binding ID, StringFormat='(Id: {0})'}"
                                        Margin="10 0 0 0"
+                                       Visibility="Collapsed"
                                        IsEnabled="True"
                                        FontSize="12"/>
                         </StackPanel>
                         <TextBox x:Name="TBTitle"
-                             Text="{Binding Title, UpdateSourceTrigger=Explicit}"
-                             Height="25"
-                             PreviewTextInput="TBTitle_PreviewTextInput"/>
+                                 Height="25"
+                                 PreviewTextInput="TBTitle_PreviewTextInput">
+                            <TextBox.Text>
+                                <Binding Path="Title">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock Text="Цена"/>
                         <TextBox x:Name="TBCost" 
-                                 Text="{Binding Cost}"
                                  Height="25"
                                  PreviewTextInput="TBCost_PreviewTextInput"
-                                 PreviewKeyDown="TBTime_PreviewKeyDown"/>
+                                 PreviewKeyDown="TBTime_PreviewKeyDown">
+                            <TextBox.Text>
+                                <Binding Path="Cost">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
                     <DockPanel VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal"
                                 DockPanel.Dock="Right"
                                 VerticalAlignment="Center">
                             <TextBlock Text="Скидка "/>
-                            <TextBox Text="{Binding Discount}"
+                            <TextBox x:Name="TBDiscount"
                                  Width="100"
                                  Height="25"
                                  MaxLength="3"
-                                 PreviewTextInput="TBCost_PreviewTextInput"/>
+                                 PreviewTextInput="TBCost_PreviewTextInput">
+                                <TextBox.Text>
+                                    <Binding Path="Discount">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal"
                             DockPanel.Dock="Left">
                             <TextBlock Text="Время (мин) "/>
                             <TextBox x:Name="TBTime"
-                                     Text="{Binding DurationInSeconds}"
                                      Width="70"
                                      Height="25"
                                      PreviewTextInput="TBTime_PreviewTextInput"
-                                     PreviewKeyDown="TBTime_PreviewKeyDown"/>
+                                     PreviewKeyDown="TBTime_PreviewKeyDown">
+                                <TextBox.Text>
+                                    <Binding Path="DurationInSeconds">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                         </StackPanel>
                     </DockPanel>
                     <StackPanel>

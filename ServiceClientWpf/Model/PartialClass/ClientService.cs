@@ -9,28 +9,15 @@ namespace ServiceClientWpf.Model
 {
     public partial class ClientService
     {
-        public string EndTime
+        public TimeSpan EndTime
         {
-            get 
-            {
-                var time = StartTime - DateTime.Now;
-                return $"{time.ToString("hh")}ч. " +
-                    $"{time.ToString("mm")}мин";
-            }
+            get => StartTime - DateTime.Now;    
         }
 
         public string ColorTime
         {
-            get
-            {
-                var time = StartTime - DateTime.Now;
-                if (time < new TimeSpan(1, 0, 0))
-                    return "#ff0000";
-                else
-                    return "#000000";
-
-
-            }
+            get => StartTime - DateTime.Now < new TimeSpan(1, 0, 0) ? "#ff0000" : "000000";
         }
+
     }
 }
