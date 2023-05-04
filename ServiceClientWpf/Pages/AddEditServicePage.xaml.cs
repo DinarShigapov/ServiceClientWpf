@@ -63,7 +63,7 @@ namespace ServiceClientWpf.Pages
                 {
                     errorBuffer += $"{error}\n";
                 }
-                MessageBox.Show(errorBuffer);
+                MessageBox.Show(errorBuffer, "", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return true;
             }
             return false;
@@ -82,16 +82,28 @@ namespace ServiceClientWpf.Pages
 
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
-
-
-
             if (Validate(contextService))
                 return;
 
+            string errorMessage = "";
             if (contextService.DurationInSeconds > 240
                 || contextService.DurationInSeconds < 30)
             {
-                MessageBox.Show("Услуга больше 4 часов / Меньше 30 мин");
+                errorMessage += "Время не входит в диапазон (30 - 240 мин.)\n";
+            }
+            if (contextService.Cost > 10000
+                || contextService.Cost < 900)
+            {
+                errorMessage += "Цена не входит в диапазон (900 - 10000 руб.)\n";
+            }
+            if (string.IsNullOrWhiteSpace(errorMessage) == false)
+            {
+                MessageBox.Show(errorMessage);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(errorMessage) == false)
+            {
+                MessageBox.Show(errorMessage);
                 return;
             }
 
@@ -138,21 +150,6 @@ namespace ServiceClientWpf.Pages
             NavigationService.Navigate(new ServiceListPage());
         }
 
-        private void TBCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (Regex.IsMatch(e.Text, @"[0-9]") == false)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void TBTitle_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (Regex.IsMatch(e.Text, @"[A-zА-я]") == false)
-            {
-                e.Handled = true;
-            }
-        }
 
         private void BBack_Click(object sender, RoutedEventArgs e)
         {
@@ -220,6 +217,26 @@ namespace ServiceClientWpf.Pages
         }
 
 
+        private void TBCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Regex.IsMatch(e.Text, @"[0-9.]") == false)
+                e.Handled = true;
+            if (TBCost.Text.Contains(".") && e.Text == ".")
+                e.Handled = true;
+            if (TBCost.Text.Length == 0
+                && e.Text == ".")
+                e.Handled = true;
+        }
+
+        private void TBTitle_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Regex.IsMatch(e.Text, @"[A-zА-я]") == false)
+            {
+                e.Handled = true;
+            }
+        }
+
+
         private void TBTime_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (Regex.IsMatch(e.Text, @"[0-9]") == false)
@@ -237,5 +254,17 @@ namespace ServiceClientWpf.Pages
             }
         }
 
+        private void TBCost_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void TBCost_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var text = TBCost.Text;
+            if (text[text.Length - 1] == '.')
+                text = text.Remove(text.Length - 1);
+        }
     }
 }

@@ -88,6 +88,7 @@ namespace ServiceClientWpf.Model
         }
 
 
+
         public string this[string columnName]
         {
             get 
@@ -124,8 +125,6 @@ namespace ServiceClientWpf.Model
                 return error;
             }
         }
-        public string Error => throw new NotImplementedException();
-
 
          public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
          {
@@ -146,6 +145,8 @@ namespace ServiceClientWpf.Model
 
             return errors;
          }
+
+        public string Error => throw new NotImplementedException();
 
         public Service Clone()
         {

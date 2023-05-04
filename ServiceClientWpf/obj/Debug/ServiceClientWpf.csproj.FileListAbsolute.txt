@@ -207,3 +207,14 @@ C:\Users\user\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\ServiceCl
 C:\Users\user\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\ServiceClientWpf.csproj.CopyComplete
 C:\Users\user\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\ServiceClientWpf.exe
 C:\Users\user\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\ServiceClientWpf.pdb
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\bin\Debug\QuickConverter.dll
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\AdminPanelWindow.g.cs
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\AddEditServicePage.g.cs
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\ClientServicePage.g.cs
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\UpcomingEntriesPage.g.cs
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\AdminPanelWindow.baml
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\AddEditServicePage.baml
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\ClientServicePage.baml
+C:\Users\progWeb\source\repos\ServiceClientWpf\ServiceClientWpf\obj\Debug\Pages\UpcomingEntriesPage.baml

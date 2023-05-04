@@ -27,14 +27,23 @@ namespace ServiceClientWpf
             InitializeComponent();
             MainFrame.Navigate(new ServiceListPage());
             SPAdminPanel.Visibility = VisibilityAdminButton;
-
-
-
         }
 
         private void BAdmin_Click(object sender, RoutedEventArgs e)
         {
             AdminPanelWindow admin = new AdminPanelWindow();
+            if (App.IsOpenAdmin == true)
+            {
+                foreach (var item in Application.Current.Windows)
+                {
+                    if (item.GetType() == typeof(AdminPanelWindow))
+                    {
+                        (item as AdminPanelWindow).Activate();
+                    }
+                }
+                return;
+            }
+
             if (App.AdminCode == true)
             {
                 App.AdminCode = false;
@@ -42,13 +51,23 @@ namespace ServiceClientWpf
                 SPAdminPanel.Visibility = Visibility.Collapsed;
             }
             else
+            {
                 admin.Show();
+                App.IsOpenAdmin = true;
+            }
 
         }
 
         private void BAddService_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new AddEditServicePage(new Service()));
+            MainFrame.Navigate(new AddEditServicePage(
+                new Service 
+                {
+                    IsDelete = false,
+                    Description = "",
+                    Discount = 0
+                }
+                ));
         }
 
         private void BEntries_Click(object sender, RoutedEventArgs e)
@@ -70,6 +89,11 @@ namespace ServiceClientWpf
                 else
                     return Visibility.Collapsed;
             }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

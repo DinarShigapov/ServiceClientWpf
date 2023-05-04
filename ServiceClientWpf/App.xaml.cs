@@ -14,8 +14,9 @@ namespace ServiceClientWpf
     /// </summary>
     public partial class App : Application
     {
-        public static ServiceDataBaseEntities DB = new ServiceDataBaseEntities();
+        public static ServiceDBEntities DB = new ServiceDBEntities();
         public static bool AdminCode = false;
+        public static bool IsOpenAdmin = false;
 
         public App() : base()
         {

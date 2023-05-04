@@ -44,18 +44,16 @@ namespace ServiceClientWpf.Pages
                 errorMessage += "Выберите клиента\n";
             }
 
-            if (TBDate.SelectedDate == null || TBDate.SelectedDate.Value < DateTime.Now)
+            if (TBDate.SelectedDate == null 
+                || TBDate.SelectedDate.Value.Date < DateTime.Now.AddHours(DateTime.Now.Hour + 1).Date)
             {
                 errorMessage += "Введите корректную дату\n";
             }
-            
-
 
             if (TimeSpan.TryParse(timeBuff, out TimeSpan timeSpan) == false)
             {
                 errorMessage += "Введите корректное время\n";
             }
-
 
             if (string.IsNullOrWhiteSpace(errorMessage) == false)
             {
@@ -81,7 +79,6 @@ namespace ServiceClientWpf.Pages
             });
 
             App.DB.SaveChanges();
-
             NavigationService.Navigate(new ServiceListPage());
         }
 

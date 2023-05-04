@@ -32,10 +32,10 @@ namespace ServiceClientWpf
             if (window != null && TBCode.Text == "0000")
             {
                 App.AdminCode = true;
+                App.IsOpenAdmin = false;
                 window.MainFrame.Navigate(new ServiceListPage());
-                this.Close();
                 window.SPAdminPanel.Visibility = Visibility.Visible;
-
+                this.Close();
             }
         }
 
