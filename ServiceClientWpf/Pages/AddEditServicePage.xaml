@@ -30,8 +30,9 @@
             <StackPanel VerticalAlignment="Top"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
-                <StackPanel x:Name="stackPanel" Orientation="Vertical"
-                    Width="360">
+                <StackPanel x:Name="stackPanel" 
+                            Orientation="Vertical"
+                            Width="360">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
                             <Style.Resources>
@@ -44,7 +45,7 @@
                     <StackPanel>
                         <StackPanel Orientation="Horizontal"
                                     VerticalAlignment="Bottom"
-                                    Margin="0 0 0 -2">
+                                    Margin="0">
                             <TextBlock Text="Название"/>
                             <TextBlock x:Name="TBIdClient" Text="{Binding ID, StringFormat='(Id: {0})'}"
                                        Margin="10 0 0 0"
@@ -68,10 +69,10 @@
                         <TextBlock Text="Цена"/>
                         <TextBox x:Name="TBCost" 
                                  Height="25"
+                                 MaxLength="12"
                                  PreviewTextInput="TBCost_PreviewTextInput"
                                  PreviewKeyDown="TBCost_PreviewKeyDown"
-                                 LostFocus="TBCost_LostFocus"
-                                 MaxLength="12">
+                                 LostFocus="TBCost_LostFocus">
                             <TextBox.Text>
                                 <Binding Path="Cost">
                                     <Binding.ValidationRules>
@@ -87,10 +88,10 @@
                                 VerticalAlignment="Center">
                             <TextBlock Text="Скидка "/>
                             <TextBox x:Name="TBDiscount"
-                                 Width="100"
-                                 Height="25"
-                                 MaxLength="3"
-                                 PreviewTextInput="TBCost_PreviewTextInput">
+                                     Width="100"
+                                     Height="25"
+                                     MaxLength="3"
+                                     PreviewTextInput="TBCost_PreviewTextInput">
                                 <TextBox.Text>
                                     <Binding Path="Discount">
                                         <Binding.ValidationRules>
@@ -101,7 +102,7 @@
                             </TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal"
-                            DockPanel.Dock="Left">
+                                    DockPanel.Dock="Left">
                             <TextBlock Text="Время (мин) "/>
                             <TextBox x:Name="TBTime"
                                      Width="70"
@@ -121,20 +122,21 @@
                     <StackPanel>
                         <TextBlock Text="Описание"/>
                         <TextBox Text="{Binding Description}"
-                             TextWrapping="Wrap"
-                             Height="130"
-                             VerticalContentAlignment="Top"
-                             Padding="5"
-                             Margin="0"/>
+                                 Height="130"
+                                 Padding="5"
+                                 Margin="0"
+                                 VerticalContentAlignment="Top"
+                                 VerticalScrollBarVisibility="Visible"
+                                 TextWrapping="Wrap"/>
                     </StackPanel>
 
                 </StackPanel>
                 <Border x:Name="border"                    
-                    Width="{Binding ActualHeight, ElementName=stackPanel, Mode=OneWay}"
-                    BorderThickness="1"
-                    Height="312"
-                    BorderBrush="Black"
-                    Margin="10 0 0 0">
+                        Width="{Binding ActualHeight, ElementName=stackPanel, Mode=OneWay}"
+                        Height="312"
+                        Margin="10 0 0 0"
+                        BorderThickness="1" 
+                        BorderBrush="Black">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="214*"/>
@@ -145,23 +147,26 @@
                         <GridSplitter Background="Black" Grid.Row="1"
                                   Height="2"/>
                         <Button x:Name="BAddImage"
-                            Grid.Row="2"
-                            Content="+"
-                            Click="BAddImage_Click"/>
+                                Grid.Row="2"
+                                Content="+"
+                                Click="BAddImage_Click"/>
                     </Grid>
                 </Border>
             </StackPanel>
             <Grid Name="gridListView" Height="220" Grid.Row="2">
-                <StackPanel Name="stackPanelSize" Orientation="Horizontal"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-                    <Button x:Name="BSlideBack" Height="100"
-                        Content="❮"
-                        Click="BSlideBack_Click"/>
-                    <ListView x:Name="LVAddImage" d:ItemsSource="{d:SampleData ItemCount=5}"
-                          Width="645"
-                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                          ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <StackPanel Name="stackPanelSize" 
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <Button x:Name="BSlideBack" 
+                            Height="100"
+                            Content="❮"
+                            Click="BSlideBack_Click"/>
+                    <ListView x:Name="LVAddImage" 
+                              d:ItemsSource="{d:SampleData ItemCount=5}"
+                              Width="645"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal"/>
@@ -178,16 +183,16 @@
                         <ListView.ContextMenu>
                             <ContextMenu>
                                 <MenuItem x:Name="MIAddImage" Header="Добавить"
-                                      Click="MIAddImage_Click"/>
+                                          Click="MIAddImage_Click"/>
                                 <MenuItem x:Name="MIDelImage" Header="Удалить"
-                                      Click="MIDelImage_Click"/>
+                                          Click="MIDelImage_Click"/>
                             </ContextMenu>
                         </ListView.ContextMenu>
                     </ListView>
                     <Button x:Name="BSlideNext" 
-                        Height="100"
-                        Content="❯"
-                        Click="BSlideNext_Click"/>
+                            Height="100"
+                            Content="❯"
+                            Click="BSlideNext_Click"/>
                 </StackPanel>
             </Grid>
         </Grid>

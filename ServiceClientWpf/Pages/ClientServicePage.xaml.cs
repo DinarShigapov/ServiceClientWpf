@@ -22,17 +22,15 @@ namespace ServiceClientWpf.Pages
     /// </summary>
     public partial class ClientServicePage : Page
     {
-        Service contextService;
+        private Service _contextService;
 
         public ClientServicePage(Service service)
         {
             InitializeComponent();
-            contextService = service;
-            TBService.DataContext = contextService;
+            _contextService = service;
+            TBService.DataContext = _contextService;
             CBClient.ItemsSource = App.DB.Client.ToList();
         }
-
-
 
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
@@ -45,7 +43,8 @@ namespace ServiceClientWpf.Pages
             }
 
             if (TBDate.SelectedDate == null 
-                || TBDate.SelectedDate.Value.Date < DateTime.Now.AddHours(DateTime.Now.Hour + 1).Date)
+                || TBDate.SelectedDate.Value.Date 
+                < DateTime.Now.AddHours(DateTime.Now.Hour + 1).Date)
             {
                 errorMessage += "Введите корректную дату\n";
             }
@@ -65,7 +64,7 @@ namespace ServiceClientWpf.Pages
 
             App.DB.ClientService.Add(new ClientService 
             { 
-                Service = contextService, 
+                Service = _contextService, 
                 Client = (Client)CBClient.SelectedItem,
                 StartTime = new DateTime
                 (
@@ -115,6 +114,21 @@ namespace ServiceClientWpf.Pages
             else if (int.Parse(TBTimeMinute.Text) < 10 && int.Parse(TBTimeMinute.Text) != 0)
                 TBTimeMinute.Text = "0" + TBTimeMinute.Text;
 
+        }
+
+        private void TBTimeHour_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TBTimeHour.Text == "")
+            {
+                TBTimeHour.Text = "00";
+            }
+            else if (int.Parse(TBTimeHour.Text) < 10 && int.Parse(TBTimeHour.Text) != 0)
+                TBTimeHour.Text = "0" + TBTimeHour.Text;
+        }
+
+        private void BBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

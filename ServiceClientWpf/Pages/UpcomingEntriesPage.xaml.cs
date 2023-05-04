@@ -26,11 +26,10 @@ namespace ServiceClientWpf.Pages
         {
             InitializeComponent();
             Refresh();
-            var dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 30);
-            dispatcherTimer.Start();
-
+            var timerRefresh = new DispatcherTimer();
+            timerRefresh.Tick += new EventHandler(TimerRefresh_Tick);
+            timerRefresh.Interval = new TimeSpan(0, 0, 30);
+            timerRefresh.Start();
         }
 
         private void Refresh() 
@@ -41,17 +40,15 @@ namespace ServiceClientWpf.Pages
                 && x.StartTime <= tomorrow
                 ).ToList().OrderBy(x => x.StartTime);
 
-            if (buffer.Count() == 0) 
-            {
+            if (buffer.Count() == 0)
                 LVService.Visibility = Visibility.Hidden;
-            }
             else
                 LVService.Visibility = Visibility.Visible;
 
             LVService.ItemsSource = buffer.ToList();
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void TimerRefresh_Tick(object sender, EventArgs e)
         {
             Refresh();
             CommandManager.InvalidateRequerySuggested();

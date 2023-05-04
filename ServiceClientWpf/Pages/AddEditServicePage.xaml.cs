@@ -29,27 +29,37 @@ namespace ServiceClientWpf.Pages
     /// </summary>
     public partial class AddEditServicePage : Page
     {
-        Service contextService;
-        Service contextServiceSave;
-        List<ServicePhoto> servicePhotoList = new List<ServicePhoto>();
-        List<ServicePhoto> delPhotoList = new List<ServicePhoto>();
+
+        private int _currentGroupList = 0;
+        private int _maxPage = 4;
+        private Service _contextService;
+        private Service _contextServiceSave;
+        private List<ServicePhoto> _servicePhotoList = new List<ServicePhoto>();
+        private List<ServicePhoto> _deletedPhotoList = new List<ServicePhoto>();
 
 
 
         public AddEditServicePage(Service service)
         {
             InitializeComponent();
-            contextService = service.Clone();
-            contextServiceSave = service;
-            if (contextService.ID != 0)
+            _contextService = service.Clone();
+            _contextServiceSave = service;
+            if (_contextService.ID != 0)
             {
                 TBIdClient.Visibility = Visibility.Visible;
-                contextService.DurationInSeconds /= 60;
-                contextService.Discount *= 100;
+                _contextService.DurationInSeconds /= 60;
+                _contextService.Discount *= 100;
             }
-            DataContext = contextService;
-            LVAddImage.ItemsSource = servicePhotoList = App.DB.ServicePhoto.Where(x => x.ServiceID == service.ID).ToList();
+            DataContext = _contextService;
+            LVAddImage.ItemsSource = _servicePhotoList = App.DB.ServicePhoto.Where(x => x.ServiceID == service.ID).ToList();
             Update();
+        }
+
+        private void Update()
+        {
+            IEnumerable<ServicePhoto> photoList = _servicePhotoList.ToList();
+            photoList = photoList.Skip(_maxPage * _currentGroupList).Take(_maxPage);
+            LVAddImage.ItemsSource = photoList;
         }
 
         bool Validate(Service service)
@@ -74,25 +84,25 @@ namespace ServiceClientWpf.Pages
             var dialog = new OpenFileDialog();
             if (dialog.ShowDialog().GetValueOrDefault())
             {
-                contextService.MainImage = File.ReadAllBytes(dialog.FileName);
+                _contextService.MainImage = File.ReadAllBytes(dialog.FileName);
                 DataContext = null;
-                DataContext = contextService;
+                DataContext = _contextService;
             }
         }
 
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
-            if (Validate(contextService))
+            if (Validate(_contextService))
                 return;
 
             string errorMessage = "";
-            if (contextService.DurationInSeconds > 240
-                || contextService.DurationInSeconds < 30)
+            if (_contextService.DurationInSeconds > 240
+                || _contextService.DurationInSeconds < 30)
             {
                 errorMessage += "Время не входит в диапазон (30 - 240 мин.)\n";
             }
-            if (contextService.Cost > 10000
-                || contextService.Cost < 900)
+            if (_contextService.Cost > 10000
+                || _contextService.Cost < 900)
             {
                 errorMessage += "Цена не входит в диапазон (900 - 10000 руб.)\n";
             }
@@ -107,8 +117,8 @@ namespace ServiceClientWpf.Pages
                 return;
             }
 
-            contextService.DurationInSeconds *= 60;
-            contextService.Discount /= 100;
+            _contextService.DurationInSeconds *= 60;
+            _contextService.Discount /= 100;
 
             foreach (PropertyInfo property in typeof(Service).GetProperties().Where(p => p.CanWrite))
             {
@@ -117,16 +127,16 @@ namespace ServiceClientWpf.Pages
                 {
                     break;
                 }
-                property.SetValue(contextServiceSave, property.GetValue(contextService, null), null);
+                property.SetValue(_contextServiceSave, property.GetValue(_contextService, null), null);
             }
 
-            if (contextService.ID == 0)
+            if (_contextService.ID == 0)
             {
-                App.DB.Service.Add(contextService);
+                App.DB.Service.Add(_contextService);
             }
             App.DB.SaveChanges();
 
-            foreach (var item in servicePhotoList)
+            foreach (var item in _servicePhotoList)
             {
                 if (item.ServiceID != 0)
                 {
@@ -134,14 +144,14 @@ namespace ServiceClientWpf.Pages
                 }
                 else
                 {
-                    App.DB.ServicePhoto.Add(new ServicePhoto { ServiceID = contextService.ID, ServiceImage = item.ServiceImage});
+                    App.DB.ServicePhoto.Add(new ServicePhoto { ServiceID = _contextService.ID, ServiceImage = item.ServiceImage});
                     App.DB.SaveChanges();
                 }
             }
 
-            if (delPhotoList.Count > 0)
+            if (_deletedPhotoList.Count > 0)
             {
-                foreach (var item in delPhotoList)
+                foreach (var item in _deletedPhotoList)
                 {
                     App.DB.ServicePhoto.Remove(item);
                     App.DB.SaveChanges();
@@ -150,7 +160,6 @@ namespace ServiceClientWpf.Pages
             NavigationService.Navigate(new ServiceListPage());
         }
 
-
         private void BBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ServiceListPage());
@@ -158,39 +167,29 @@ namespace ServiceClientWpf.Pages
 
         private void BSlideBack_Click(object sender, RoutedEventArgs e)
         {
-            CurrentGroupList--;
-            if (CurrentGroupList < 0)
-                CurrentGroupList = 0;
+            _currentGroupList--;
+            if (_currentGroupList < 0)
+                _currentGroupList = 0;
             Update();
         }
 
         private void BSlideNext_Click(object sender, RoutedEventArgs e)
         {
-            CurrentGroupList++;
+            _currentGroupList++;
             if (LVAddImage.Items.Count < 4)
-                CurrentGroupList--;
+                _currentGroupList--;
             Update();
         }
 
-        private void Update()
-        {
-            IEnumerable<ServicePhoto> photoList = servicePhotoList.ToList();
-            photoList = photoList.Skip(MaxPage * CurrentGroupList).Take(MaxPage);
-            LVAddImage.ItemsSource = photoList;
-        }
-
-        int CurrentGroupList = 0;
-        int MaxPage = 4;
         private void MIAddImage_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
             if (dialog.ShowDialog().GetValueOrDefault())
             {
-                servicePhotoList.Add(new ServicePhoto { ServiceImage = File.ReadAllBytes(dialog.FileName) });
+                _servicePhotoList.Add(new ServicePhoto { ServiceImage = File.ReadAllBytes(dialog.FileName) });
                 Update();
             }
         }
-
 
         private void MIDelImage_Click(object sender, RoutedEventArgs e)
         {
@@ -201,21 +200,20 @@ namespace ServiceClientWpf.Pages
 
             if (selectImage.ServiceID != 0)
             {
-                delPhotoList.Add(selectImage);
-                servicePhotoList.Remove(selectImage);
-                LVAddImage.ItemsSource = servicePhotoList;
-                CurrentGroupList = 0;
-                MaxPage = 4;
+                _deletedPhotoList.Add(selectImage);
+                _servicePhotoList.Remove(selectImage);
+                LVAddImage.ItemsSource = _servicePhotoList;
+                _currentGroupList = 0;
+                _maxPage = 4;
                 Update();
             }
             else
             {
-                servicePhotoList.Remove(selectImage);
-                LVAddImage.ItemsSource = servicePhotoList;
+                _servicePhotoList.Remove(selectImage);
+                LVAddImage.ItemsSource = _servicePhotoList;
                 Update();
             }
         }
-
 
         private void TBCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -235,7 +233,6 @@ namespace ServiceClientWpf.Pages
                 e.Handled = true;
             }
         }
-
 
         private void TBTime_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

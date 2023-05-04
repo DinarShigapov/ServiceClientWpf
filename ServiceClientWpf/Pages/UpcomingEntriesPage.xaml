@@ -14,22 +14,23 @@
 
     <Grid>
         <TextBlock Text="Данных нет"
+                   FontSize="40"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   FontSize="40"/>
+                   HorizontalAlignment="Center"/>
         <ListView x:Name="LVService"
                   Grid.Row="1"
                   Width="{Binding ElementName=SCPage, Mode=OneWay}"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
+                  d:ItemsSource="{d:SampleData ItemCount=5}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border x:Name="border"
-                            BorderBrush="Black"
-                            Height="130"
-                            Width="{Binding Path=ActualWidth, ElementName=LVService, Converter={StaticResource widthConvert}, ConverterParameter=40}"
                             Margin="5"
-                            BorderThickness="1"
-                            Padding="2">
+                            Padding="2"
+                            Height="130"
+                            BorderBrush="Black"
+                            Width="{Binding Path=ActualWidth, ElementName=LVService, Converter={StaticResource widthConvert}, ConverterParameter=40}"
+                            BorderThickness="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="280"/>
@@ -54,8 +55,8 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel>
                                     <TextBlock Text="Услуга"
-                                           FontSize="15"
-                                           HorizontalAlignment="Center"/>
+                                               FontSize="15"
+                                               HorizontalAlignment="Center"/>
                                     <TextBlock Text="{Binding Service.Title}"
                                                TextWrapping="Wrap"
                                                FontSize="15"

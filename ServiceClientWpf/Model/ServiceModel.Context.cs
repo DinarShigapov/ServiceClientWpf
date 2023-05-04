@@ -13,10 +13,10 @@ namespace ServiceClientWpf.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ServiceDBEntities : DbContext
+    public partial class ServiceDataBaseEntities : DbContext
     {
-        public ServiceDBEntities()
-            : base("name=ServiceDBEntities")
+        public ServiceDataBaseEntities()
+            : base("name=ServiceDataBaseEntities")
         {
         }
     
@@ -35,7 +35,6 @@ namespace ServiceClientWpf.Model
         public virtual DbSet<ProductSale> ProductSale { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<ServicePhoto> ServicePhoto { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
     }
 }

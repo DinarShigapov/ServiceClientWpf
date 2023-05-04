@@ -25,9 +25,9 @@ namespace ServiceClientWpf.Pages
     public partial class ServiceListPage : Page
     {
 
-        int MaxPage = 0; 
-        int currentPage = 0;
-        int inpages = 0;
+        private int _maxPage = 0; 
+        private int _currentPage = 0;
+        private int _inPages = 0;
 
         public ServiceListPage()
         {
@@ -37,8 +37,6 @@ namespace ServiceClientWpf.Pages
             CBSort.SelectedIndex = 0;
             Refresh();
         }
-
-
 
         private void Refresh() 
         {
@@ -70,42 +68,24 @@ namespace ServiceClientWpf.Pages
                     
             }
 
-
-
             if (TBSearch.Text.Length > 0)
                 services = services.Where(x => x.Title.ToLower().StartsWith(TBSearch.Text.ToLower())
                 || x.Description.ToLower().StartsWith(TBSearch.Text.ToLower()));
 
-            MaxPage = 0;
+            _maxPage = 0;
             int servCount = 0;
             do
             {
-                servCount += inpages; 
-                MaxPage++;
+                servCount += _inPages;
+                _maxPage++;
             } 
             while (servCount < services.Count());
 
-            TBCountPage.Text = $"{currentPage + 1}/{MaxPage}";
-            services = services.Skip(inpages * currentPage).Take(inpages);
+            TBCountPage.Text = $"{_currentPage + 1}/{_maxPage}";
+            services = services.Skip(_inPages * _currentPage).Take(_inPages);
 
             LVService.ItemsSource = services.ToList();
             TBCountService.Text = $"{services.Count()} из {App.DB.Service.Where(x => x.IsDelete == false).ToList().Count}";
-        }
-
-        private void CBSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Refresh();
-        }
-
-        private void TBSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Refresh();
-        }
-
-
-        private void CBFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Refresh();
         }
 
         private void BEdit_Click(object sender, RoutedEventArgs e)
@@ -122,6 +102,9 @@ namespace ServiceClientWpf.Pages
             if (deleteService == null) return;
 
             var checkSerivice = App.DB.ClientService.ToList();
+
+            var fd = checkSerivice.FirstOrDefault(x => x.StartTime > DateTime.Now
+            && x.Service == deleteService);
 
             if (checkSerivice.FirstOrDefault(x => x.StartTime > DateTime.Now
             && x.Service == deleteService) != null)
@@ -148,39 +131,53 @@ namespace ServiceClientWpf.Pages
 
         private void InPages_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (InPages.SelectedIndex == 0)
+            switch (InPages.SelectedIndex)
             {
-                inpages = 3;
+                case 0:
+                    _inPages = 3;
+                    break;
+                case 1:
+                    _inPages = 5;
+                    break;
+                case 2:
+                    _inPages = 10;
+                    break;
             }
-            if (InPages.SelectedIndex == 1)
-            {
-                inpages = 5;
-            }
-            if (InPages.SelectedIndex == 2)
-            {
-                inpages = 10;
-            }
-            currentPage = 0;
+
+            _currentPage = 0;
             Refresh();
         }
 
-        private void BButton_Click(object sender, RoutedEventArgs e)
+        private void BSlideList_Click(object sender, RoutedEventArgs e)
         {
-
             if (sender == BRight)
             {
-                if (currentPage == MaxPage - 1)
-                    currentPage = 0;
-                else currentPage++;
+                if (_currentPage == _maxPage - 1)
+                    _currentPage = 0;
+                else _currentPage++;
             }
             else if (sender == BLeft)
             {
-                if (currentPage == 0)
-                    currentPage = MaxPage - 1;
-                else currentPage--;
+                if (_currentPage == 0)
+                    _currentPage = _maxPage - 1;
+                else _currentPage--;
             }
             Refresh();
         }
 
+        private void CBSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void TBSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void CBFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Refresh();
+        }
     }
 }

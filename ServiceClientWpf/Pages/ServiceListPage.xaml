@@ -4,14 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ServiceClientWpf.Pages"
-      xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase" xmlns:Converters="clr-namespace:ServiceClientWpf.Converters"
+      xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase" 
+      xmlns:Converters="clr-namespace:ServiceClientWpf.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       x:Name="SCPage"
       Title="ServiceListPage">
-
     <Page.Resources>
-        <Converters:WidthConverter x:Key="widthConvert" />
+        <Converters:WidthConverter x:Key="widthConvert"/>
     </Page.Resources>
     
     <Grid x:Name="grid">
@@ -66,8 +66,7 @@
                               SelectionChanged="CBFilter_SelectionChanged"
                               Width="130"
                               Height="{Binding ActualHeight, ElementName=TBSearch, Mode=OneWay}">
-                        <ComboBoxItem Content="Все"
-                                      />
+                        <ComboBoxItem Content="Все"/>
                         <ComboBoxItem Content="от 0 до 5%"/>
                         <ComboBoxItem Content="от 5 до 15%"/>
                         <ComboBoxItem Content="от 15 до 30%"/>
@@ -80,16 +79,17 @@
         <ListView x:Name="LVService"
                   Grid.Row="1"
                   Width="{Binding ElementName=SCPage, Mode=OneWay}"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                  d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border x:Name="border"
-                            BorderBrush="Black"
-                            Height="165"
                             Width="{Binding Path=ActualWidth, ElementName=LVService, Converter={StaticResource widthConvert}, ConverterParameter=40}"
+                            Padding="2"
                             Margin="5"
-                            BorderThickness="1"
-                            Padding="2">
+                            Height="165"
+                            BorderBrush="Black"
+                            BorderThickness="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{Binding ActualHeight, ElementName=border, Mode=OneWay}"/>
@@ -101,10 +101,10 @@
                                           Width="Auto"
                                           IsEnabled="True"
                                           Background="Transparent"/>
-
                             <Border BorderThickness="1"
                                     BorderBrush="Black">
-                                <Image Source="{Binding MainImage}" Stretch="UniformToFill"/>
+                                <Image Source="{Binding MainImage}" 
+                                       Stretch="UniformToFill"/>
                             </Border>
 
                             <Grid Grid.Column="2" 
@@ -130,8 +130,7 @@
                                                Margin="0 0 10 0"/>
                                     <TextBlock Text="{Binding StrCostTime}"
                                                TextWrapping="Wrap"
-                                               FontSize="18"
-                                               />
+                                               FontSize="18"/>
                                 </StackPanel>
                                 <TextBlock Text="{Binding StrDiscount}"
                                            Grid.Row="2"
@@ -142,15 +141,14 @@
                                             Grid.Row="5"
                                             Visibility="{Binding VisibilityAdmin}">
                                     <Button x:Name="BAdd"
-                                            Content="Записать на прием"
+                                            Content="Записать на урок"
                                             Click="BAdd_Click"/>
                                     <Button x:Name="BEdit"
                                             Content="редактировать"
-                                            Click="BEdit_Click"
-                                            Margin="10 0"/>
+                                            Margin="10 0"
+                                            Click="BEdit_Click"/>
                                     <Button x:Name="BDelete" 
                                             Content="удалить"
-
                                             Click="BDelete_Click"/>
                                 </StackPanel>
                             </Grid>
@@ -165,12 +163,12 @@
                         Margin="10 0 0 0">
                 <Button x:Name="BLeft"
                         Content="❮"
-                        Click="BButton_Click"
+                        Click="BSlideList_Click"
                         Visibility="{Binding VisibilityAdmin}"/>
                 <TextBlock x:Name="TBCountPage" Text="0/0"/>
                 <Button x:Name="BRight"
                         Content="❯"
-                        Click="BButton_Click"/>
+                        Click="BSlideList_Click"/>
                 <ComboBox x:Name="InPages"
                           SelectionChanged="InPages_SelectionChanged">
                     <ComboBoxItem>3</ComboBoxItem>
@@ -178,11 +176,10 @@
                     <ComboBoxItem>10</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            <StackPanel 
-                    HorizontalAlignment="Right"
-                    Margin="0 0 10 0">
+            <StackPanel HorizontalAlignment="Right"
+                        Margin="0 0 10 0">
                 <TextBlock x:Name="TBCountService" 
-                       Text="100 из 100"/>
+                            Text="100 из 100"/>
             </StackPanel>
         </Grid>
     </Grid>
