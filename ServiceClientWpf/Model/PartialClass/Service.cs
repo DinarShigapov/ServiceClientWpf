@@ -132,7 +132,8 @@ namespace ServiceClientWpf.Model
 
             if (string.IsNullOrWhiteSpace(Title))
                 errors.Add(new ValidationResult("- Не указано название"));
-            else if (App.DB.Service.FirstOrDefault(x => x.Title == Title) != null)
+            else if (App.DB.Service.FirstOrDefault(x => x.Title == Title) != null
+                && ID == 0)
                 errors.Add(new ValidationResult($"- Название {Title} недоступна"));
             if (string.IsNullOrWhiteSpace(Cost.ToString()))
                 errors.Add(new ValidationResult("- Не указано цена"));

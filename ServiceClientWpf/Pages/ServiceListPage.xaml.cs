@@ -121,6 +121,18 @@ namespace ServiceClientWpf.Pages
             var deleteService = (sender as Button).DataContext as Service;
             if (deleteService == null) return;
 
+            //var checkSerivice = App.DB.ClientService.ToList();
+
+            //if (checkSerivice.FirstOrDefault(x => x.StartTime > DateTime.Now
+            //&& x.Service == deleteService) != null)
+            //{
+            //    MessageBox.Show("Нельзя удалить услугу, т.к на неё есть запись");
+            //    return;
+            //}
+            //else
+            //{
+            //    deleteService.IsDelete = true;
+            //}
             deleteService.IsDelete = true;
             App.DB.SaveChanges();
             Refresh();
