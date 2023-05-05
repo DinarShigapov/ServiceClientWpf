@@ -51,8 +51,8 @@
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Сортировка:"/>
-                    <ComboBox x:Name="CBSort"
-                              SelectionChanged="CBSort_SelectionChanged"
+                    <ComboBox x:Name="CBSorting"
+                              SelectionChanged="CBSorting_SelectionChanged"
                               Width="130"
                               Height="{Binding ActualHeight, ElementName=TBSearch, Mode=OneWay}">
                         <ComboBoxItem Content="Все"/>

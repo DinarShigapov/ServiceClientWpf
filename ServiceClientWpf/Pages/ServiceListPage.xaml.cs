@@ -24,16 +24,16 @@ namespace ServiceClientWpf.Pages
             InitializeComponent();
             InPages.SelectedIndex = 0;
             CBFilter.SelectedIndex = 0;
-            CBSort.SelectedIndex = 0;
+            CBSorting.SelectedIndex = 0;
             Refresh();
         }
 
         private void Refresh() 
         {
             IEnumerable<Service> services = App.DB.Service.Where(x => x.IsDelete == false).ToList();
-            if (CBSort.SelectedIndex == 1)
+            if (CBSorting.SelectedIndex == 1)
                 services = services.OrderBy(x => x.CostDiscount);
-            else if (CBSort.SelectedIndex == 2)
+            else if (CBSorting.SelectedIndex == 2)
                 services = services.OrderByDescending(x => x.CostDiscount);
 
             switch (CBFilter.SelectedIndex)
@@ -99,13 +99,13 @@ namespace ServiceClientWpf.Pages
             if (checkSerivice.FirstOrDefault(x => x.StartTime > DateTime.Now
             && x.Service == deleteService) != null)
             {
-                MessageBox.Show("Нельзя удалить услугу, т.к на неё есть запись");
+                MessageBox.Show("Нельзя удалить услугу, т.к на неё есть запись", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             else
             {
-                var delete = App.DB.Service.FirstOrDefault(x => x.ID == deleteService.ID);
-                delete.IsDelete = true;
+                //var delete = App.DB.Service.FirstOrDefault(x => x.ID == deleteService.ID);
+                deleteService.IsDelete = true;
             }
 
             App.DB.SaveChanges();
@@ -155,7 +155,7 @@ namespace ServiceClientWpf.Pages
             Refresh();
         }
 
-        private void CBSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CBSorting_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Refresh();
         }
