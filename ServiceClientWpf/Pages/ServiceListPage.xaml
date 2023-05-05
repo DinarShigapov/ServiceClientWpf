@@ -157,7 +157,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2"
+              Background="White">
             <StackPanel HorizontalAlignment="Left"
                         Orientation="Horizontal"
                         Margin="10 0 0 0">
@@ -179,7 +180,7 @@
             <StackPanel HorizontalAlignment="Right"
                         Margin="0 0 10 0">
                 <TextBlock x:Name="TBCountService" 
-                            Text="100 из 100"/>
+                            Text="0 из 0"/>
             </StackPanel>
         </Grid>
     </Grid>

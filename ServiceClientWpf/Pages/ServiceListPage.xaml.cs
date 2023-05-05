@@ -30,7 +30,8 @@ namespace ServiceClientWpf.Pages
 
         private void Refresh() 
         {
-            IEnumerable<Service> services = App.DB.Service.Where(x => x.IsDelete == false).ToList();
+            IEnumerable<Service> services = 
+                App.DB.Service.Where(x => x.IsDelete == false).ToList();
             if (CBSorting.SelectedIndex == 1)
                 services = services.OrderBy(x => x.CostDiscount);
             else if (CBSorting.SelectedIndex == 2)
@@ -59,7 +60,8 @@ namespace ServiceClientWpf.Pages
             }
 
             if (TBSearch.Text.Length > 0)
-                services = services.Where(x => x.Title.ToLower().StartsWith(TBSearch.Text.ToLower())
+                services = services.Where(x => 
+                x.Title.ToLower().StartsWith(TBSearch.Text.ToLower())
                 || x.Description.ToLower().StartsWith(TBSearch.Text.ToLower()));
 
             _maxPage = 0;
@@ -75,7 +77,8 @@ namespace ServiceClientWpf.Pages
             services = services.Skip(_inPages * _currentPage).Take(_inPages);
 
             LVService.ItemsSource = services.ToList();
-            TBCountService.Text = $"{services.Count()} из {App.DB.Service.Where(x => x.IsDelete == false).ToList().Count}";
+            TBCountService.Text = $"{services.Count()} из " +
+                $"{App.DB.Service.Where(x => x.IsDelete == false).ToList().Count}";
         }
 
         private void BEdit_Click(object sender, RoutedEventArgs e)
