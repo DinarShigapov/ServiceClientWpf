@@ -184,8 +184,8 @@
                             <ContextMenu>
                                 <MenuItem x:Name="MIAddImage" Header="Добавить"
                                           Click="MIAddImage_Click"/>
-                                <MenuItem x:Name="MIDelImage" Header="Удалить"
-                                          Click="MIDelImage_Click"/>
+                                <MenuItem x:Name="MIDeleteImage" Header="Удалить"
+                                          Click="MIDeleteImage_Click"/>
                             </ContextMenu>
                         </ListView.ContextMenu>
                     </ListView>

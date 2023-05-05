@@ -15,6 +15,7 @@ namespace ServiceClientWpf.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+          
         }
 
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)

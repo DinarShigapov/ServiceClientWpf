@@ -1,24 +1,14 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ServiceClientWpf.Model;
 using System.Reflection;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using ValidateService = System.ComponentModel.DataAnnotations.ValidationResult;
 
@@ -191,7 +181,7 @@ namespace ServiceClientWpf.Pages
             }
         }
 
-        private void MIDelImage_Click(object sender, RoutedEventArgs e)
+        private void MIDeleteImage_Click(object sender, RoutedEventArgs e)
         {
             var selectImage = LVAddImage.SelectedItem as ServicePhoto;
 
